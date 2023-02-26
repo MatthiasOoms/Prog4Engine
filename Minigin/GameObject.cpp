@@ -4,8 +4,21 @@
 #include "Renderer.h"
 #include "Transform.h"
 #include "Component.h"
+#include <memory>
 
-dae::GameObject::~GameObject() = default;
+dae::GameObject::GameObject()
+{
+	m_pTransform = std::make_unique<Transform>();
+}
+
+dae::GameObject::~GameObject()
+{
+	for (size_t idx{}; idx < m_pComponents.size(); ++idx)
+	{
+		delete m_pComponents[idx];
+		m_pComponents[idx] = nullptr;
+	}
+}
 
 void dae::GameObject::Update([[maybe_unused]] float deltaTime) 
 {
@@ -23,7 +36,7 @@ void dae::GameObject::Render(float deltaTime) const
 	}
 }
 
-dae::Transform dae::GameObject::GetTransform() const
+dae::Transform& dae::GameObject::GetTransform() const
 {
-	return Transform();
+	return *m_pTransform;
 }

@@ -14,14 +14,14 @@ namespace dae
 	public:
 		void Update(float deltaTime);
 		void Render(float deltaTime) const;
-		Transform GetTransform() const;
+		Transform& GetTransform() const;
 
 		template <typename Comp> Comp* AddComponent();
 		template <typename Comp> Comp* GetComponent() const;
 		template <typename Comp> bool HasComponent() const;
 		template <typename Comp> void RemoveComponent();
 
-		GameObject() = default;
+		GameObject();
 		~GameObject();
 		GameObject(const GameObject& other) = delete;
 		GameObject(GameObject&& other) = delete;
@@ -30,7 +30,6 @@ namespace dae
 
 	private:
 		std::unique_ptr<Transform> m_pTransform;
-
 		std::vector<Component*> m_pComponents;
 	};
 
