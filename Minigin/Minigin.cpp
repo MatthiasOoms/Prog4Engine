@@ -81,6 +81,7 @@ void dae::Minigin::Run(const std::function<void()>& load)
 {
 	load();
 
+	// Limit FPS
 	int msPerFrame{ 8 };
 
 	auto& renderer = Renderer::GetInstance();
