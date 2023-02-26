@@ -81,7 +81,7 @@ void dae::Minigin::Run(const std::function<void()>& load)
 {
 	load();
 
-	int msPerFrame{ 16 };
+	int msPerFrame{ 8 };
 
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
@@ -109,8 +109,6 @@ void dae::Minigin::Run(const std::function<void()>& load)
 		renderer.Render(deltaTime);
 		const auto sleepTime = currentTime + std::chrono::milliseconds(msPerFrame)
 								- std::chrono::high_resolution_clock::now();
-
-		std::cout << float(1.f / deltaTime) << std::endl;
 
 		std::this_thread::sleep_for(sleepTime);
 		// End of Tick calculations
