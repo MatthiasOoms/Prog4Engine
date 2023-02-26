@@ -10,6 +10,7 @@
 #include "Renderer.h"
 #include "ResourceManager.h"
 #include <chrono>
+#include <iostream>
 
 SDL_Window* g_window{};
 
@@ -80,6 +81,8 @@ void dae::Minigin::Run(const std::function<void()>& load)
 {
 	load();
 
+	int msPerFrame{ 16 };
+
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
 	auto& input = InputManager::GetInstance();
@@ -87,14 +90,15 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	// todo: this update loop could use some work.
 	bool doContinue = true;
 	auto lastTime = std::chrono::high_resolution_clock::now();
-	float lag = 0.0f;
+	//float lag = 0.0f;
 	//float fixedTimeStep = 0.02f;
 	while (doContinue)
 	{
+		// Do Tick calculation
 		const auto currentTime = std::chrono::high_resolution_clock::now();
 		const float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
 		lastTime = currentTime;
-		lag += deltaTime;
+		//lag += deltaTime;
 		doContinue = input.ProcessInput();
 		//while (lag >= fixedTimeStep)
 		//{
@@ -103,5 +107,12 @@ void dae::Minigin::Run(const std::function<void()>& load)
 		//}
 		sceneManager.Update(deltaTime);
 		renderer.Render();
+		const auto sleepTime = currentTime + std::chrono::milliseconds(msPerFrame)
+					- std::chrono::high_resolution_clock::now();
+
+		std::cout << float(1.f / deltaTime) << std::endl;
+
+		std::this_thread::sleep_for(sleepTime);
+		// End of Tick calculations
 	}
 }
