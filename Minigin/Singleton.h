@@ -1,13 +1,13 @@
 #pragma once
 namespace dae
 {
-	template <typename T>
+	template <typename Comp>
 	class Singleton
 	{
 	public:
-		static T& GetInstance()
+		static Comp& GetInstance()
 		{
-			static T instance{};
+			static Comp instance{};
 			return instance;
 		}
 

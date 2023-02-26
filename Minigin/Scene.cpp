@@ -32,11 +32,11 @@ void Scene::Update(float deltaTime)
 	}
 }
 
-void Scene::Render() const
+void Scene::Render(float deltaTime) const
 {
 	for (const auto& object : m_objects)
 	{
-		object->Render();
+		object->Render(deltaTime);
 	}
 }
 

@@ -18,6 +18,7 @@ namespace dae
 
 		template <typename Comp> Comp* AddComponent();
 		template <typename Comp> Comp* GetComponent() const;
+		template <typename Comp> bool HasComponent() const;
 		template <typename Comp> void RemoveComponent();
 
 		GameObject() = default;
@@ -36,27 +37,53 @@ namespace dae
 	template<typename Comp>
 	inline Comp* GameObject::AddComponent()
 	{
-		m_pComponents.push_back(new Comp{});
-		return m_pComponents;
+		Comp* temp{ new Comp{} };
+		m_pComponents.push_back(temp);
+		return temp;
 	}
 
 	template<typename Comp>
 	inline Comp* GameObject::GetComponent() const
 	{
+		Comp* temp;
 		for (size_t idx{}; idx < m_pComponents.size(); idx++)
 		{
-			if (dynamic_cast(m_pComponents, Comp))
+			temp = dynamic_cast<Comp*>(m_pComponents[idx]);
+			if (temp != nullptr)
 			{
-
+				return temp;
 			}
 		}
-		return ;
+		return nullptr;
 	}
 
 	template<typename Comp>
 	inline void GameObject::RemoveComponent()
 	{
-		m_pComponents.pop_back(new Comp{});
-		return m_pComponents;
+		Comp* temp;
+		for (size_t idx{}; idx < m_pComponents.size(); idx++)
+		{
+			temp = dynamic_cast<Comp*>(m_pComponents[idx]);
+			if (temp != nullptr)
+			{
+				auto nth = m_pComponents.begin() + idx;
+				m_pComponents.erase(nth);
+			}
+		}
+	}
+
+	template<typename Comp>
+	inline bool GameObject::HasComponent() const
+	{
+		Comp* temp;
+		for (size_t idx{}; idx < m_pComponents.size(); idx++)
+		{
+			temp = dynamic_cast<Comp*>(m_pComponents[idx]);
+			if (temp != nullptr)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }

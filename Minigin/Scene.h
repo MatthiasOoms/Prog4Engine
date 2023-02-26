@@ -13,7 +13,7 @@ namespace dae
 		void RemoveAll();
 
 		void Update(float deltaTime);
-		void Render() const;
+		void Render(float deltaTime) const;
 
 		~Scene();
 		Scene(const Scene& other) = delete;
