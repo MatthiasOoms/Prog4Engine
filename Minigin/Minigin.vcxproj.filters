@@ -54,7 +54,7 @@
     <ClInclude Include="Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VisualComponent.h">
+    <ClInclude Include="RenderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FPSComponent.h">
@@ -101,7 +101,7 @@
     <ClCompile Include="Minigin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VisualComponent.cpp">
+    <ClCompile Include="RenderComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FPSComponent.cpp">

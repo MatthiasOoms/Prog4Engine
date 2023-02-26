@@ -1,12 +1,12 @@
 #pragma once
-#include "VisualComponent.h"
+#include "RenderComponent.h"
 #include "Transform.h"
 #include <string>
 #include <memory>
 
 class Font;
 class Texture2D;
-class TextComponent final : public VisualComponent
+class TextComponent final : public RenderComponent
 {
 public:
 	void Update(float deltaTime) override;

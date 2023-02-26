@@ -1,6 +1,6 @@
 #include "FPSComponent.h"
 
-void Component::Update(float deltaTime)
+void Component::Update([[maybe_unused]] float deltaTime)
 {
 
 }
