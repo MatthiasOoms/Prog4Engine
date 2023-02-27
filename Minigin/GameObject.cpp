@@ -20,7 +20,7 @@ dae::GameObject::~GameObject()
 	}
 }
 
-void dae::GameObject::Update([[maybe_unused]] float deltaTime) 
+void dae::GameObject::Update(float deltaTime) 
 {
 	for (size_t idx{}; idx < m_pComponents.size(); ++idx)
 	{

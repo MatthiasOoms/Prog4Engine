@@ -7,7 +7,8 @@
 
 namespace dae
 {
-    void TextComponent::Update([[maybe_unused]] float elapsedSec, [[maybe_unused]] const GameObject* obj)
+    // [[maybe_unused]] because it inherits from a class that has elapsedSec but it isn't used in here
+    void TextComponent::Update(float, const GameObject* obj)
     {
         if (m_NeedsUpdate)
         {

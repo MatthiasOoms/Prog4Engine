@@ -82,7 +82,7 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	load();
 
 	// Limit FPS
-	int msPerFrame{ 8 };
+	int msPerFrame{ 6 };
 
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
@@ -92,7 +92,7 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	bool doContinue = true;
 	auto lastTime = std::chrono::high_resolution_clock::now();
 	//float lag = 0.0f;
-	//float fixedTimeStep = 0.02f;
+
 	while (doContinue)
 	{
 		// Do Tick calculation
@@ -101,13 +101,18 @@ void dae::Minigin::Run(const std::function<void()>& load)
 		lastTime = currentTime;
 		//lag += deltaTime;
 		doContinue = input.ProcessInput();
-		//while (lag >= fixedTimeStep)
+
+		//while (lag >= msPerFrame)
 		//{
-		//	  FixedUpdate(fixedTimeStep);
-		//	  lag -= fixedTimeStep;
+		// FixedUpdate is for Physics and Networking, if you don't have these, don't use it
+		//	  FixedUpdate(msPerFrame);
+		//	  lag -= msPerFrame;
 		//}
+
 		sceneManager.Update(deltaTime);
+
 		renderer.Render(deltaTime);
+
 		const auto sleepTime = currentTime + std::chrono::milliseconds(msPerFrame)
 								- std::chrono::high_resolution_clock::now();
 

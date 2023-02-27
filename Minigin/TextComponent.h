@@ -17,7 +17,7 @@ namespace dae
 		TextComponent() = default;
 		virtual ~TextComponent() = default;
 
-		virtual void Update(float elapsedSec, const GameObject* obj) override;
+		virtual void Update(float, const GameObject* obj) override;
 
 		void SetText(const std::string& text);
 		void SetFont(const std::shared_ptr<Font>& font);
@@ -26,6 +26,9 @@ namespace dae
 		bool m_NeedsUpdate;
 		std::string m_Text;
 		std::shared_ptr<Font> m_pFont;
+
+		// Add ptr to GameObject in Interface classes
+		// Now there's only access in Update and Render
 	};
 }
 

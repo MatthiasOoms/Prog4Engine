@@ -36,6 +36,8 @@ namespace dae
 	template<typename Comp>
 	inline Comp* GameObject::AddComponent()
 	{
+		// TODO: Implement check to see if Inherits from base class Component
+		// Use a static_assert for it
 		Comp* temp{ new Comp{} };
 		m_pComponents.push_back(temp);
 		return temp;
@@ -65,6 +67,9 @@ namespace dae
 			temp = dynamic_cast<Comp*>(m_pComponents[idx]);
 			if (temp != nullptr)
 			{
+				delete m_pComponents[idx];
+				m_pComponents[idx] = nullptr;
+
 				auto nth = m_pComponents.begin() + idx;
 				m_pComponents.erase(nth);
 			}
