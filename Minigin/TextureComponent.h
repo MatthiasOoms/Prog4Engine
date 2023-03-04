@@ -10,7 +10,7 @@ namespace dae
 	class TextureComponent : public RenderComponent
 	{
 	public:
-		TextureComponent() = default;
+		TextureComponent(GameObject* pOwner);
 		virtual ~TextureComponent();
 
 		void SetTexture(const std::shared_ptr<Texture2D>& texture);

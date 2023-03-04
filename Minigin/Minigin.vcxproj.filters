@@ -84,10 +84,10 @@
     <ClInclude Include="TextureComponent.h">
       <Filter>Engine Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="TextComponent.h">
-      <Filter>Engine Files</Filter>
-    </ClInclude>
     <ClInclude Include="FPSComponent.h">
+      <Filter>Engine Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TextComponent.h">
       <Filter>Engine Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -128,10 +128,13 @@
     <ClCompile Include="TextureComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="TextComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FPSComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TextComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>

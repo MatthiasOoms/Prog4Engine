@@ -2,6 +2,7 @@
 // Why multiple classes in 1 header?
 // Only need to include 1 file
 // Better overview
+#include <memory>
 
 namespace dae
 {
@@ -10,17 +11,20 @@ namespace dae
 	class Component
 	{
 	public:
-		Component() = default;
+		Component(GameObject* pOwner);
 		virtual ~Component() = default;
 
 		virtual void Update(float elapsedSec, const GameObject* obj) = 0;
 		virtual void Render(float elapsedSec, const GameObject* obj) const = 0;
+
+	protected:
+		GameObject* m_pOwner;
 	};
 
 	class UpdateComponent : public Component
 	{
 	public:
-		UpdateComponent() = default;
+		UpdateComponent(GameObject* pOwner);
 		virtual ~UpdateComponent() = default;
 
 		virtual void Update(float elapsedSec, const GameObject* obj) override = 0;
@@ -30,7 +34,7 @@ namespace dae
 	class RenderComponent : public Component
 	{
 	public:
-		RenderComponent() = default;
+		RenderComponent(GameObject* pOwner);
 		virtual ~RenderComponent() = default;
 
 		virtual void Update(float, const GameObject*) override {};

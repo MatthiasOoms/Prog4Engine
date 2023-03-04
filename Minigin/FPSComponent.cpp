@@ -2,6 +2,12 @@
 #include "GameObject.h"
 #include "TextComponent.h"
 
+dae::FPSComponent::FPSComponent(GameObject* pOwner)
+	: UpdateComponent(pOwner)
+	, m_pTextComponent{ nullptr }
+{
+}
+
 void dae::FPSComponent::Update(float elapsedSec, const GameObject* obj)
 {
 	if (m_pTextComponent != nullptr)

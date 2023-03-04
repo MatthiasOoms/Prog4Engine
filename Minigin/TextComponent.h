@@ -14,7 +14,7 @@ namespace dae
 	class TextComponent : public UpdateComponent
 	{
 	public:
-		TextComponent() = default;
+		TextComponent(GameObject* pOwner);
 		virtual ~TextComponent() = default;
 
 		virtual void Update(float, const GameObject* obj) override;

@@ -16,7 +16,7 @@ namespace dae
 		void Render(float deltaTime) const;
 		Transform& GetTransform() const;
 
-		template <typename Comp> Comp* AddComponent();
+		template <typename Comp> Comp* AddComponent(GameObject* pOwner);
 		template <typename Comp> Comp* GetComponent() const;
 		template <typename Comp> bool HasComponent() const;
 		template <typename Comp> void RemoveComponent();
@@ -34,11 +34,11 @@ namespace dae
 	};
 
 	template<typename Comp>
-	inline Comp* GameObject::AddComponent()
+	inline Comp* GameObject::AddComponent(GameObject* pOwner)
 	{
 		// TODO: Implement check to see if Inherits from base class Component
 		// Use a static_assert for it
-		Comp* temp{ new Comp{} };
+		Comp* temp{ new Comp{ pOwner } };
 		m_pComponents.push_back(temp);
 		return temp;
 	}

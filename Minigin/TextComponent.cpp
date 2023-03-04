@@ -7,7 +7,11 @@
 
 namespace dae
 {
-    // [[maybe_unused]] because it inherits from a class that has elapsedSec but it isn't used in here
+    TextComponent::TextComponent(GameObject* pOwner)
+        : UpdateComponent(pOwner)
+    {
+    }
+
     void TextComponent::Update(float, const GameObject* obj)
     {
         if (m_NeedsUpdate)

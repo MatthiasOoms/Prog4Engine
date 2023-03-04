@@ -10,7 +10,7 @@ namespace dae
 	class FPSComponent : public UpdateComponent
 	{
 	public:
-		FPSComponent() = default;
+		FPSComponent(GameObject* pOwner);
 		virtual ~FPSComponent() {};
 
 		virtual void Update(float elapsedSec, const GameObject* obj);

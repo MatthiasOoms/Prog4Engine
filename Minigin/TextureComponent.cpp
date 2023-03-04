@@ -7,6 +7,11 @@
 
 namespace dae
 {
+	TextureComponent::TextureComponent(GameObject* pOwner)
+		: RenderComponent(pOwner)
+	{
+	}
+
 	TextureComponent::~TextureComponent()
 	{
 	}
