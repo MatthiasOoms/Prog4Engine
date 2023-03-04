@@ -27,8 +27,8 @@ namespace dae
 		UpdateComponent(GameObject* pOwner);
 		virtual ~UpdateComponent() = default;
 
-		virtual void Update(float elapsedSec, const GameObject* obj) override = 0;
-		virtual void Render(float, const GameObject*) const override {};
+		virtual void Update(float elapsedSec) override = 0;
+		virtual void Render(float) const override {};
 	};
 
 	class RenderComponent : public Component
@@ -37,7 +37,7 @@ namespace dae
 		RenderComponent(GameObject* pOwner);
 		virtual ~RenderComponent() = default;
 
-		virtual void Update(float, const GameObject*) override {};
-		virtual void Render(float elapsedSec, const GameObject* obj) const override = 0;
+		virtual void Update(float) override {};
+		virtual void Render(float elapsedSec) const override = 0;
 	};
 };

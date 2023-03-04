@@ -24,7 +24,7 @@ void dae::GameObject::Update(float deltaTime)
 {
 	for (size_t idx{}; idx < m_pComponents.size(); ++idx)
 	{
-		m_pComponents[idx]->Update(deltaTime, this);
+		m_pComponents[idx]->Update(deltaTime);
 	}
 }
 
@@ -32,7 +32,7 @@ void dae::GameObject::Render(float deltaTime) const
 {
 	for (size_t idx{}; idx < m_pComponents.size(); ++idx)
 	{
-		m_pComponents[idx]->Render(deltaTime, this);
+		m_pComponents[idx]->Render(deltaTime);
 	}
 }
 
