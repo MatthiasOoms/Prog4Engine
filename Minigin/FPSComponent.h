@@ -13,7 +13,7 @@ namespace dae
 		FPSComponent(GameObject* pOwner);
 		virtual ~FPSComponent() {};
 
-		virtual void Update(float elapsedSec, const GameObject* obj);
+		virtual void Update(float elapsedSec);
 
 	private:
 		TextComponent* m_pTextComponent;

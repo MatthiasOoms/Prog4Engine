@@ -14,8 +14,8 @@ namespace dae
 		Component(GameObject* pOwner);
 		virtual ~Component() = default;
 
-		virtual void Update(float elapsedSec, const GameObject* obj) = 0;
-		virtual void Render(float elapsedSec, const GameObject* obj) const = 0;
+		virtual void Update(float elapsedSec) = 0;
+		virtual void Render(float elapsedSec) const = 0;
 
 	protected:
 		GameObject* m_pOwner;

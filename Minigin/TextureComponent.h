@@ -14,7 +14,7 @@ namespace dae
 		virtual ~TextureComponent();
 
 		void SetTexture(const std::shared_ptr<Texture2D>& texture);
-		virtual void Render(float elapsedSec, const GameObject* obj) const override;
+		virtual void Render(float elapsedSec) const override;
 
 	private:
 		std::shared_ptr<Texture2D> m_pTexture;

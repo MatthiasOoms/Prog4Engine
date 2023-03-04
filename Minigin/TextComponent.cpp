@@ -9,10 +9,11 @@ namespace dae
 {
     TextComponent::TextComponent(GameObject* pOwner)
         : UpdateComponent(pOwner)
+        , m_NeedsUpdate{ true }
     {
     }
 
-    void TextComponent::Update(float, const GameObject* obj)
+    void TextComponent::Update(float)
     {
         if (m_NeedsUpdate)
         {
@@ -28,7 +29,7 @@ namespace dae
                 throw std::runtime_error(std::string("Create text texture from surface failed: ") + SDL_GetError());
             }
             SDL_FreeSurface(surf);
-            obj->GetComponent<dae::TextureComponent>()->SetTexture(std::make_shared<Texture2D>(texture));
+            m_pOwner->GetComponent<dae::TextureComponent>()->SetTexture(std::make_shared<Texture2D>(texture));
             m_NeedsUpdate = false;
         }
     }

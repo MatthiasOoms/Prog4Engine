@@ -8,7 +8,7 @@ dae::FPSComponent::FPSComponent(GameObject* pOwner)
 {
 }
 
-void dae::FPSComponent::Update(float elapsedSec, const GameObject* obj)
+void dae::FPSComponent::Update(float elapsedSec)
 {
 	if (m_pTextComponent != nullptr)
 	{
@@ -17,6 +17,6 @@ void dae::FPSComponent::Update(float elapsedSec, const GameObject* obj)
 	else
 	{
 		// Downside: Will try to get TextComponent every frame if there is none
-		m_pTextComponent = obj->GetComponent<dae::TextComponent>();
+		m_pTextComponent = m_pOwner->GetComponent<dae::TextComponent>();
 	}
 }
