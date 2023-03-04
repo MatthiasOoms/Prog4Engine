@@ -9,6 +9,11 @@ namespace dae
 	class TransformComponent : public Component
 	{
 	public:
+		TransformComponent(GameObject* pOwner);
+		~TransformComponent();
+
+
+
 		const glm::vec3& GetPosition() const { return m_position; }
 		void SetPosition(float x, float y, float z);
 	private:

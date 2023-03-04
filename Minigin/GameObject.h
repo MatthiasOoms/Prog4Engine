@@ -1,12 +1,12 @@
 #pragma once
 #include <memory>
-#include "Transform.h"
+#include "TransformComponent.h"
 #include <vector>
 
 namespace dae
 {
 	class Component;
-	class Transform;
+	class TransformComponent;
 
 	// todo: this should become final.
 	class GameObject final
@@ -14,7 +14,7 @@ namespace dae
 	public:
 		void Update(float deltaTime);
 		void Render(float deltaTime) const;
-		Transform& GetTransform() const;
+		TransformComponent& GetTransform() const;
 
 		template <typename Comp> Comp* AddComponent();
 		template <typename Comp> Comp* GetComponent() const;
@@ -30,7 +30,7 @@ namespace dae
 
 	private:
 		std::unique_ptr<GameObject> m_pParent;
-		std::unique_ptr<Transform> m_pTransform;
+		std::unique_ptr<TransformComponent> m_pTransform;
 		std::vector<Component*> m_pComponents;
 		std::vector<GameObject*> m_pChildren;
 	};

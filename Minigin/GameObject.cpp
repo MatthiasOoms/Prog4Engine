@@ -2,13 +2,13 @@
 #include "GameObject.h"
 #include "ResourceManager.h"
 #include "Renderer.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "Component.h"
 #include <memory>
 
 dae::GameObject::GameObject()
 {
-	m_pTransform = std::make_unique<Transform>();
+	m_pTransform = std::make_unique<TransformComponent>();
 }
 
 dae::GameObject::~GameObject()
@@ -42,7 +42,7 @@ void dae::GameObject::Render(float deltaTime) const
 	}
 }
 
-dae::Transform& dae::GameObject::GetTransform() const
+dae::TransformComponent& dae::GameObject::GetTransform() const
 {
 	return *m_pTransform;
 }
