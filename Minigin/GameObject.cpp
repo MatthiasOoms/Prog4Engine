@@ -18,6 +18,12 @@ dae::GameObject::~GameObject()
 		delete m_pComponents[idx];
 		m_pComponents[idx] = nullptr;
 	}
+
+	for (size_t idx{}; idx < m_pChildren.size(); ++idx)
+	{
+		delete m_pChildren[idx];
+		m_pChildren[idx] = nullptr;
+	}
 }
 
 void dae::GameObject::Update(float deltaTime) 

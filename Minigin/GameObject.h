@@ -29,8 +29,10 @@ namespace dae
 		GameObject& operator=(GameObject&& other) = delete;
 
 	private:
+		std::unique_ptr<GameObject> m_pParent;
 		std::unique_ptr<Transform> m_pTransform;
 		std::vector<Component*> m_pComponents;
+		std::vector<GameObject*> m_pChildren;
 	};
 
 	template<typename Comp>

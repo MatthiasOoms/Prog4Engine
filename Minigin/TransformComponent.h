@@ -1,9 +1,12 @@
 #pragma once
+#include "Component.h"
 #include <glm/glm.hpp>
 
 namespace dae
 {
-	class Transform final
+	class GameObject;
+
+	class TransformComponent : public Component
 	{
 	public:
 		const glm::vec3& GetPosition() const { return m_position; }

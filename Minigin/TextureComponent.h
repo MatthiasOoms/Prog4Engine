@@ -13,6 +13,11 @@ namespace dae
 		TextureComponent(GameObject* pOwner);
 		virtual ~TextureComponent();
 
+		TextureComponent(const TextureComponent& other) = delete;
+		TextureComponent(TextureComponent&& other) = delete;
+		TextureComponent& operator=(const TextureComponent& other) = delete;
+		TextureComponent& operator=(TextureComponent&& other) = delete;
+
 		void SetTexture(const std::shared_ptr<Texture2D>& texture);
 		virtual void Render(float elapsedSec) const override;
 

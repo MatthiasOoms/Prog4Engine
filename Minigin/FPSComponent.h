@@ -13,6 +13,11 @@ namespace dae
 		FPSComponent(GameObject* pOwner);
 		virtual ~FPSComponent() {};
 
+		FPSComponent(const FPSComponent& other) = delete;
+		FPSComponent(FPSComponent&& other) = delete;
+		FPSComponent& operator=(const FPSComponent& other) = delete;
+		FPSComponent& operator=(FPSComponent&& other) = delete;
+
 		virtual void Update(float elapsedSec);
 
 	private:

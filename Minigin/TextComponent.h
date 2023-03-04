@@ -17,6 +17,11 @@ namespace dae
 		TextComponent(GameObject* pOwner);
 		virtual ~TextComponent() = default;
 
+		TextComponent(const TextComponent& other) = delete;
+		TextComponent(TextComponent&& other) = delete;
+		TextComponent& operator=(const TextComponent& other) = delete;
+		TextComponent& operator=(TextComponent&& other) = delete;
+
 		virtual void Update(float) override;
 
 		void SetText(const std::string& text);
