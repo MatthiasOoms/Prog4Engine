@@ -36,8 +36,8 @@ namespace dae
 		
 
 	private:
-		std::unique_ptr<GameObject> m_pParent;
 		std::unique_ptr<TransformComponent> m_pTransform;
+		GameObject* m_pParent;
 		std::vector<Component*> m_pComponents;
 		std::vector<GameObject*> m_pChildren;
 		bool m_IsPositionDirty;

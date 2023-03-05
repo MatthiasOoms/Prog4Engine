@@ -9,7 +9,7 @@ namespace dae
 {
     TextComponent::TextComponent(GameObject* pOwner)
         : UpdateComponent(pOwner)
-        , m_NeedsUpdate{ true }
+        , m_NeedsUpdate{ false }
     {
     }
 

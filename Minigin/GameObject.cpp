@@ -5,17 +5,20 @@
 #include "TransformComponent.h"
 #include "Component.h"
 #include <memory>
+#include <iostream>
 
 dae::GameObject::GameObject()
+	: m_pParent{ nullptr }
 {
 	m_pTransform = std::make_unique<TransformComponent>(this);
 }
 
 dae::GameObject::GameObject(GameObject* pParent)
-	: m_pParent{ pParent }
-	, m_IsPositionDirty { true }
-	, m_pTransform { std::make_unique<TransformComponent>(this) }
+	: m_IsPositionDirty { true }
 {
+	m_pParent = nullptr;
+	m_pTransform = std::make_unique<TransformComponent>(this);
+	SetParent(pParent, false);
 }
 
 dae::GameObject::~GameObject()
@@ -24,12 +27,6 @@ dae::GameObject::~GameObject()
 	{
 		delete m_pComponents[idx];
 		m_pComponents[idx] = nullptr;
-	}
-
-	for (size_t idx{}; idx < m_pChildren.size(); ++idx)
-	{
-		delete m_pChildren[idx];
-		m_pChildren[idx] = nullptr;
 	}
 }
 
@@ -56,7 +53,7 @@ dae::TransformComponent& dae::GameObject::GetTransform() const
 
 dae::GameObject* dae::GameObject::GetParent() const
 {
-	return m_pParent.get();
+	return m_pParent;
 }
 
 void dae::GameObject::SetParent(GameObject* pParent, bool keepWorldPosition)
@@ -75,7 +72,7 @@ void dae::GameObject::SetParent(GameObject* pParent, bool keepWorldPosition)
 		m_pParent->RemoveChild(this);
 	}
 
-	m_pParent = std::make_unique<GameObject>(pParent);
+	m_pParent = pParent;
 
 	if (m_pParent)
 	{
