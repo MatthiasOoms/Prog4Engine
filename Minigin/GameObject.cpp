@@ -17,8 +17,8 @@ dae::GameObject::GameObject(GameObject* pParent)
 	: m_IsPositionDirty { true }
 {
 	m_pParent = nullptr;
-	m_pTransform = std::make_unique<TransformComponent>(this);
 	SetParent(pParent, false);
+	m_pTransform = std::make_unique<TransformComponent>(this);
 }
 
 dae::GameObject::~GameObject()
@@ -60,7 +60,10 @@ void dae::GameObject::SetParent(GameObject* pParent, bool keepWorldPosition)
 {
 	if (m_pParent == nullptr)
 	{
-		SetLocalPosition(GetWorldPosition());
+		if (m_pTransform)
+		{
+			SetLocalPosition(GetWorldPosition());
+		}
 	}
 	else if (keepWorldPosition)
 	{
@@ -119,7 +122,7 @@ void dae::GameObject::UpdateWorldPosition()
 {
 	if (m_IsPositionDirty)
 	{
-		if (!m_pParent)
+		if (m_pParent == nullptr)
 		{
 			auto buffer{ GetLocalPosition() };
 			m_pTransform->SetWorldPosition(buffer.x, buffer.y, buffer.z);
