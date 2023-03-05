@@ -69,7 +69,6 @@ void dae::GameObject::SetParent(GameObject* pParent, bool keepWorldPosition)
 	{
 		// Maths might be off
 		SetLocalPosition(GetLocalPosition() + m_pParent->GetWorldPosition());
-		SetPositionDirty();
 	}
 	if (m_pParent)
 	{
@@ -146,5 +145,9 @@ void dae::GameObject::SetLocalPosition(const glm::vec3& pos)
 
 void dae::GameObject::SetPositionDirty()
 {
+	for (int idx{}; idx < GetChildCount(); ++idx)
+	{
+		m_pChildren[idx]->SetPositionDirty();
+	}
 	m_IsPositionDirty = true;
 }
