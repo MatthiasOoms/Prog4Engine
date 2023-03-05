@@ -34,6 +34,8 @@ namespace dae
 		int GetChildCount() const;
 		GameObject* GetChildAt(int idx) const;
 		
+		void SetLocalPosition(const glm::vec3& pos);
+		void SetLocalPosition(const float x, const float y, const float z);
 
 	private:
 		std::unique_ptr<TransformComponent> m_pTransform;
@@ -50,7 +52,6 @@ namespace dae
 
 		void UpdateWorldPosition();
 
-		void SetLocalPosition(const glm::vec3& pos);
 		void SetPositionDirty();
 	};
 

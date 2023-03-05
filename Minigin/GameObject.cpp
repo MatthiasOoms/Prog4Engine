@@ -143,6 +143,12 @@ void dae::GameObject::SetLocalPosition(const glm::vec3& pos)
 	SetPositionDirty();
 }
 
+void dae::GameObject::SetLocalPosition(const float x, const float y, const float z)
+{
+	m_pTransform->SetLocalPosition(x, y, z);
+	SetPositionDirty();
+}
+
 void dae::GameObject::SetPositionDirty()
 {
 	for (int idx{}; idx < GetChildCount(); ++idx)

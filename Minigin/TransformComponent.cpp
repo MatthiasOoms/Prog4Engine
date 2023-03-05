@@ -21,7 +21,15 @@ void dae::TransformComponent::SetLocalPosition(const float x, const float y, con
 	m_LocalPosition.x = x;
 	m_LocalPosition.y = y;
 	m_LocalPosition.z = z;
-	SetWorldPosition(m_WorldPosition.x + x, m_WorldPosition.y + y, m_WorldPosition.z + z);
+	if (m_pOwner->GetParent())
+	{
+		auto buffer{ m_pOwner->GetParent()->GetTransform().GetWorldPosition() };
+		SetWorldPosition(buffer.x + x, buffer.y + y, buffer.z + z);
+	}
+	else
+	{
+		SetWorldPosition(x, y, z);
+	}
 }
 
 void dae::TransformComponent::SetWorldPosition(float x, float y, float z)
