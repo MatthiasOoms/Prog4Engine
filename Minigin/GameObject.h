@@ -46,7 +46,9 @@ namespace dae
 		void RemoveChild(GameObject* pChild);
 
 		const glm::vec3& GetLocalPosition() const;
-		const glm::vec3& GetWorldPosition() const;
+		const glm::vec3& GetWorldPosition();
+
+		void UpdateWorldPosition();
 
 		void SetLocalPosition(const glm::vec3& pos);
 		void SetPositionDirty();
