@@ -11,6 +11,13 @@ dae::GameObject::GameObject()
 	m_pTransform = std::make_unique<TransformComponent>(this);
 }
 
+dae::GameObject::GameObject(GameObject* pParent)
+	: m_pParent{ pParent }
+	, m_IsPositionDirty { true }
+	, m_pTransform { std::make_unique<TransformComponent>(this) }
+{
+}
+
 dae::GameObject::~GameObject()
 {
 	for (size_t idx{}; idx < m_pComponents.size(); ++idx)
@@ -58,20 +65,19 @@ void dae::GameObject::SetParent(GameObject* pParent, bool keepWorldPosition)
 	{
 		SetLocalPosition(GetWorldPosition());
 	}
-	else
+	else if (keepWorldPosition)
 	{
-		if (keepWorldPosition)
-		{
-			// Maths might be off
-			SetLocalPosition(GetLocalPosition() + m_pParent->GetWorldPosition());
-		}
+		// Maths might be off
+		SetLocalPosition(GetLocalPosition() + m_pParent->GetWorldPosition());
 		SetPositionDirty();
 	}
 	if (m_pParent)
 	{
 		m_pParent->RemoveChild(this);
 	}
+
 	m_pParent = std::make_unique<GameObject>(pParent);
+
 	if (m_pParent)
 	{
 		m_pParent->AddChild(this);
@@ -80,7 +86,7 @@ void dae::GameObject::SetParent(GameObject* pParent, bool keepWorldPosition)
 
 int dae::GameObject::GetChildCount() const
 {
-	return m_pChildren.size();
+	return int(m_pChildren.size());
 }
 
 dae::GameObject* dae::GameObject::GetChildAt(int idx) const
@@ -104,25 +110,25 @@ void dae::GameObject::RemoveChild(GameObject* pChild)
 
 const glm::vec3& dae::GameObject::GetLocalPosition() const
 {
-	// TODO: insert return statement here
+	return m_pTransform->GetLocalPosition();
 }
 
 const glm::vec3& dae::GameObject::GetWorldPosition() const
 {
-	// TODO: insert return statement here
+	if (m_IsPositionDirty)
+	{
+		m_pTransform->UpdateWorldPosition();
+	}
+	return m_pTransform->GetWorldPosition();
 }
 
 void dae::GameObject::SetLocalPosition(const glm::vec3& pos)
 {
-	m_pTransform->SetPosition(pos.x, pos.y, pos.z);
+	m_pTransform->SetLocalPosition(pos.x, pos.y, pos.z);
 	SetPositionDirty();
 }
 
 void dae::GameObject::SetPositionDirty()
 {
 	m_IsPositionDirty = true;
-}
-
-void dae::GameObject::AddChild(GameObject* pChild)
-{
 }

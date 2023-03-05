@@ -13,6 +13,7 @@ namespace dae
 	{
 	public:
 		GameObject();
+		GameObject(GameObject* pParent);
 		~GameObject();
 
 		GameObject(const GameObject& other) = delete;
