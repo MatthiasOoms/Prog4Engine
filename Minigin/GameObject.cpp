@@ -8,7 +8,7 @@
 
 dae::GameObject::GameObject()
 {
-	m_pTransform = std::make_unique<TransformComponent>();
+	m_pTransform = std::make_unique<TransformComponent>(this);
 }
 
 dae::GameObject::~GameObject()
@@ -45,4 +45,84 @@ void dae::GameObject::Render(float deltaTime) const
 dae::TransformComponent& dae::GameObject::GetTransform() const
 {
 	return *m_pTransform;
+}
+
+dae::GameObject* dae::GameObject::GetParent() const
+{
+	return m_pParent.get();
+}
+
+void dae::GameObject::SetParent(GameObject* pParent, bool keepWorldPosition)
+{
+	if (m_pParent == nullptr)
+	{
+		SetLocalPosition(GetWorldPosition());
+	}
+	else
+	{
+		if (keepWorldPosition)
+		{
+			// Maths might be off
+			SetLocalPosition(GetLocalPosition() + m_pParent->GetWorldPosition());
+		}
+		SetPositionDirty();
+	}
+	if (m_pParent)
+	{
+		m_pParent->RemoveChild(this);
+	}
+	m_pParent = std::make_unique<GameObject>(pParent);
+	if (m_pParent)
+	{
+		m_pParent->AddChild(this);
+	}
+}
+
+int dae::GameObject::GetChildCount() const
+{
+	return m_pChildren.size();
+}
+
+dae::GameObject* dae::GameObject::GetChildAt(int idx) const
+{
+	if (idx < GetChildCount())
+	{
+		return m_pChildren[idx];
+	}
+	return nullptr;
+}
+
+void dae::GameObject::AddChild(GameObject* pChild)
+{
+	m_pChildren.push_back(pChild);
+}
+
+void dae::GameObject::RemoveChild(GameObject* pChild)
+{
+	std::erase(m_pChildren, pChild);
+}
+
+const glm::vec3& dae::GameObject::GetLocalPosition() const
+{
+	// TODO: insert return statement here
+}
+
+const glm::vec3& dae::GameObject::GetWorldPosition() const
+{
+	// TODO: insert return statement here
+}
+
+void dae::GameObject::SetLocalPosition(const glm::vec3& pos)
+{
+	m_pTransform->SetPosition(pos.x, pos.y, pos.z);
+	SetPositionDirty();
+}
+
+void dae::GameObject::SetPositionDirty()
+{
+	m_IsPositionDirty = true;
+}
+
+void dae::GameObject::AddChild(GameObject* pChild)
+{
 }

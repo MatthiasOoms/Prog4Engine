@@ -12,6 +12,14 @@ namespace dae
 	class GameObject final
 	{
 	public:
+		GameObject();
+		~GameObject();
+
+		GameObject(const GameObject& other) = delete;
+		GameObject(GameObject&& other) = delete;
+		GameObject& operator=(const GameObject& other) = delete;
+		GameObject& operator=(GameObject&& other) = delete;
+
 		void Update(float deltaTime);
 		void Render(float deltaTime) const;
 		TransformComponent& GetTransform() const;
@@ -20,19 +28,27 @@ namespace dae
 		template <typename Comp> Comp* GetComponent() const;
 		template <typename Comp> bool HasComponent() const;
 		template <typename Comp> void RemoveComponent();
-
-		GameObject();
-		~GameObject();
-		GameObject(const GameObject& other) = delete;
-		GameObject(GameObject&& other) = delete;
-		GameObject& operator=(const GameObject& other) = delete;
-		GameObject& operator=(GameObject&& other) = delete;
+		GameObject* GetParent() const;
+		void SetParent(GameObject* pParent, bool keepWorldPosition);
+		int GetChildCount() const;
+		GameObject* GetChildAt(int idx) const;
+		
 
 	private:
 		std::unique_ptr<GameObject> m_pParent;
 		std::unique_ptr<TransformComponent> m_pTransform;
 		std::vector<Component*> m_pComponents;
 		std::vector<GameObject*> m_pChildren;
+		bool m_IsPositionDirty;
+
+		void AddChild(GameObject* pChild);
+		void RemoveChild(GameObject* pChild);
+
+		const glm::vec3& GetLocalPosition() const;
+		const glm::vec3& GetWorldPosition() const;
+
+		void SetLocalPosition(const glm::vec3& pos);
+		void SetPositionDirty();
 	};
 
 	template<typename Comp>

@@ -1,8 +1,8 @@
 #include "Component.h"
 
 dae::Component::Component(GameObject* pOwner)
+	: m_pOwner{ pOwner }
 {
-	m_pOwner = pOwner;
 }
 
 dae::UpdateComponent::UpdateComponent(GameObject* pOwner)
