@@ -104,6 +104,7 @@ void dae::GameObject::AddChild(GameObject* pChild)
 
 void dae::GameObject::RemoveChild(GameObject* pChild)
 {
+	// Not removed from scene, also what about children's children (Set their new parent in destructor)
 	std::erase(m_pChildren, pChild);
 }
 
@@ -153,7 +154,7 @@ void dae::GameObject::SetPositionDirty()
 {
 	for (int idx{}; idx < GetChildCount(); ++idx)
 	{
-		m_pChildren[idx]->SetPositionDirty();
+		GetChildAt(idx)->SetPositionDirty();
 	}
 	m_IsPositionDirty = true;
 }
