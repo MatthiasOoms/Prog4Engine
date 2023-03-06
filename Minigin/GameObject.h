@@ -40,7 +40,9 @@ namespace dae
 	private:
 		std::unique_ptr<TransformComponent> m_pTransform;
 		// Everything is owned by the scene, inside of smart_ptrs
-		// why use smart ptrs inside of the objects (Good job me!)
+		// why use smart ptrs inside of the objects
+
+		// After quiz: Should I use smart ptr for parent and child or not?
 		GameObject* m_pParent;
 		std::vector<GameObject*> m_pChildren;
 		std::vector<Component*> m_pComponents;
