@@ -93,6 +93,9 @@
     <ClInclude Include="RotationComponent.h">
       <Filter>Engine Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>Engine Files\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -142,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="RotationComponent.cpp">
       <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Command.cpp">
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

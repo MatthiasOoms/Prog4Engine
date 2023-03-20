@@ -14,8 +14,8 @@ dae::GameObject::GameObject(GameObject* pParent)
 	: m_IsPositionDirty { true }
 {
 	m_pParent = nullptr;
-	SetParent(pParent, false);
 	m_pTransform = std::make_unique<TransformComponent>(this);
+	SetParent(pParent, false);
 }
 
 dae::GameObject::~GameObject()
