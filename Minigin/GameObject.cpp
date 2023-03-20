@@ -2,10 +2,7 @@
 #include "GameObject.h"
 #include "ResourceManager.h"
 #include "Renderer.h"
-#include "TransformComponent.h"
 #include "Component.h"
-#include <memory>
-#include <iostream>
 
 dae::GameObject::GameObject()
 	: m_pParent{ nullptr }

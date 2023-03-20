@@ -1,12 +1,11 @@
 #pragma once
-#include <memory>
 #include "TransformComponent.h"
+#include <memory>
 #include <vector>
 
 namespace dae
 {
 	class Component;
-	class TransformComponent;
 
 	// todo: this should become final.
 	class GameObject final
