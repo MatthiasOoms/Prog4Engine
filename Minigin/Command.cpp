@@ -12,8 +12,8 @@ dae::Command::~Command()
 	m_pGameObject = nullptr;
 }
 
-void dae::Move::Execute()
+void dae::MoveCommand::Execute()
 {
 	// TODO
-	//GetGameObject()->SetLocalPosition(GetGameObject()->GetTransform().GetLocalPosition());
+	// GetGameObject()->SetLocalPosition(GetGameObject()->GetTransform().GetLocalPosition());
 }

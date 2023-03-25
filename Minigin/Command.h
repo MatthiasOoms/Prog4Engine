@@ -17,7 +17,7 @@ namespace dae
 		GameObject* m_pGameObject;
 	};
 
-	class Move : public Command
+	class MoveCommand : public Command
 	{
 	private:
 		glm::vec3 m_MoveDir;
