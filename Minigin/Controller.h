@@ -24,7 +24,7 @@ namespace dae
 			ButtonY = 0x8000
 		};
 
-		void Update(float);
+		void Update();
 
 		bool IsDown(ControllerButton button) const;
 		bool IsUp(ControllerButton button) const;

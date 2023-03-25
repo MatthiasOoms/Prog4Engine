@@ -1,7 +1,7 @@
-#include <SDL.h>
-#include "InputManager.h"
-#include <Xinput.h>
 #include <windows.h>
+#include "InputManager.h"
+#include <SDL.h>
+#include <Xinput.h>
 
 void dae::InputManager::HandleInput()
 {

@@ -19,5 +19,4 @@ namespace dae
 		void HandleInput();
 		bool IsPressed(int button);
 	};
-
 }
