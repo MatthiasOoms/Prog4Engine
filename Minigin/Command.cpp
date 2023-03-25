@@ -12,8 +12,14 @@ dae::Command::~Command()
 	m_pGameObject = nullptr;
 }
 
-void dae::MoveCommand::Execute()
+dae::MoveCommand::MoveCommand(GameObject* pGameObject, glm::vec3 dir, float speed)
+	: Command{pGameObject}
+	, m_MoveDir{dir}
+	, m_MoveSpeed{speed}
 {
-	// TODO
-	// GetGameObject()->SetLocalPosition(GetGameObject()->GetTransform().GetLocalPosition());
+}
+
+void dae::MoveCommand::Execute(float elapsedSec)
+{
+	GetGameObject()->SetLocalPosition(GetGameObject()->GetTransform().GetLocalPosition() + (m_MoveDir * m_MoveSpeed * elapsedSec));
 }
