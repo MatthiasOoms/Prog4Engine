@@ -3,14 +3,8 @@
 #include <SDL.h>
 #include <Xinput.h>
 
-void dae::InputManager::HandleInput()
+bool dae::InputManager::HandleInput()
 {
-}
-
-bool dae::InputManager::IsPressed(int button)
-{
-	button;
-
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) 
 	{
@@ -30,4 +24,16 @@ bool dae::InputManager::IsPressed(int button)
 	}
 
 	return true;
+}
+
+int dae::InputManager::AddController()
+{
+	m_Controllers.push_back(std::make_unique<Controller>(int(m_Controllers.size()) + 1));
+	return int(m_Controllers.size());
+}
+
+void dae::InputManager::AddCommand(Controller::ControllerButton button, std::unique_ptr<Command> pCommand, int controllerIdx)
+{
+	ControllerKey keyPair{ std::make_pair(controllerIdx, button) };
+	m_ConsoleCommands.insert(std::make_pair(keyPair, std::move(pCommand)));
 }

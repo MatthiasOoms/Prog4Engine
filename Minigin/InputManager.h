@@ -16,7 +16,9 @@ namespace dae
 		std::vector<std::unique_ptr<Controller>> m_Controllers{};
 
 	public:
-		void HandleInput();
-		bool IsPressed(int button);
+		bool HandleInput();
+
+		int AddController();
+		void AddCommand(Controller::ControllerButton button, std::unique_ptr<Command> pCommand, int controllerIdx);
 	};
 }
