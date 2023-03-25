@@ -2,9 +2,9 @@
 #include "Singleton.h"
 #include "Controller.h"
 #include "Command.h"
-#include <map>
-#include <memory>
 #include <vector>
+#include <memory>
+#include <map>
 
 namespace dae
 {
