@@ -3,7 +3,7 @@
 #include <SDL.h>
 #include <Xinput.h>
 
-bool dae::InputManager::HandleInput()
+bool dae::InputManager::HandleInput(float elapsedSec)
 {
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) 
@@ -21,6 +21,25 @@ bool dae::InputManager::HandleInput()
 			
 		}
 		// etc...
+	}
+
+	for (auto const& controller : m_Controllers)
+	{
+		for (auto const& command : m_ConsoleCommands)
+		{
+			if (controller->IsDown(command.first.second))
+			{
+				command.second->Execute(elapsedSec);
+			}
+			if (controller->IsUp(command.first.second))
+			{
+				// Do nothing
+			}
+			if (controller->IsPressed(command.first.second))
+			{
+				command.second->Execute(elapsedSec);
+			}
+		}
 	}
 
 	return true;
