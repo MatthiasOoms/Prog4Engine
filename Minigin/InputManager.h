@@ -19,6 +19,6 @@ namespace dae
 		bool HandleInput(float elapsedSec);
 
 		int AddController();
-		void AddCommand(Controller::ControllerButton button, std::unique_ptr<Command> pCommand, int controllerIdx);
+		void AddCommand(int controllerIdx, Controller::ControllerButton button, std::unique_ptr<Command> pCommand);
 	};
 }

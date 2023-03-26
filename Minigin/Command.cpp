@@ -8,8 +8,6 @@ dae::Command::Command(GameObject* pGameObject)
 
 dae::Command::~Command()
 {
-	delete m_pGameObject;
-	m_pGameObject = nullptr;
 }
 
 dae::MoveCommand::MoveCommand(GameObject* pGameObject, glm::vec3 dir, float speed)

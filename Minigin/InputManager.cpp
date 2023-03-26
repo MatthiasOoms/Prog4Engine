@@ -22,7 +22,7 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 		}
 		// etc...
 	}
-
+	
 	for (auto const& controller : m_Controllers)
 	{
 		for (auto const& command : m_ConsoleCommands)
@@ -51,7 +51,7 @@ int dae::InputManager::AddController()
 	return int(m_Controllers.size());
 }
 
-void dae::InputManager::AddCommand(Controller::ControllerButton button, std::unique_ptr<Command> pCommand, int controllerIdx)
+void dae::InputManager::AddCommand(int controllerIdx, Controller::ControllerButton button, std::unique_ptr<Command> pCommand)
 {
 	ControllerKey keyPair{ std::make_pair(controllerIdx, button) };
 	m_ConsoleCommands.insert(std::make_pair(keyPair, std::move(pCommand)));
