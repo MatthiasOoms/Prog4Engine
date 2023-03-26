@@ -53,17 +53,29 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 		controller->Update();
 		for (auto const& command : m_ConsoleCommands)
 		{
-			if (controller->IsDown(command.first.second))
+			switch (command.first.second)
 			{
-				command.second->Execute(elapsedSec);
-			}
-			if (controller->IsUp(command.first.second))
-			{
-				// Do nothing
-			}
-			if (controller->IsPressed(command.first.second))
-			{
-				command.second->Execute(elapsedSec);
+				case keyState::isDown:
+					{
+						if (controller->IsDown(command.first.first.second))
+						{
+							command.second->Execute(elapsedSec);
+						}
+					}
+				case keyState::isPressed:
+					{
+						if (controller->IsPressed(command.first.first.second))
+						{
+							command.second->Execute(elapsedSec);
+						}
+					}
+				case keyState::isUp:
+					{
+						if (controller->IsUp(command.first.first.second))
+						{
+							command.second->Execute(elapsedSec);
+						}
+					}
 			}
 		}
 	}
@@ -80,10 +92,11 @@ int dae::InputManager::AddController()
 	return int(m_Controllers.size());
 }
 
-void dae::InputManager::AddCommand(int controllerIdx, Controller::ControllerButton button, std::unique_ptr<Command> pCommand)
+void dae::InputManager::AddCommand(int controllerIdx, Controller::ControllerButton button, keyState state, std::unique_ptr<Command> pCommand)
 {
 	ControllerKey keyPair{ std::make_pair(controllerIdx, button) };
-	m_ConsoleCommands.insert(std::make_pair(keyPair, std::move(pCommand)));
+	ControllerKeyState statePair{ std::make_pair(keyPair, state) };
+	m_ConsoleCommands.insert(std::make_pair(statePair, std::move(pCommand)));
 }
 
 void dae::InputManager::AddCommand(SDL_KeyCode key, std::unique_ptr<Command> pCommand)
