@@ -2,8 +2,6 @@
 #include "InputManager.h"
 #include <SDL.h>
 #include <Xinput.h>
-#include <iostream>
-#include <string>
 
 dae::InputManager::InputManager()
 {
@@ -19,13 +17,7 @@ dae::InputManager::InputManager()
 		if (dwResult == ERROR_SUCCESS)
 		{
 			// Controller is connected
-			std::cout << " Controller " + std::to_string(i) + " is connected.\n";
 			AddController();
-		}
-		else
-		{
-			// Controller is not connected
-			std::cout << " Controller " + std::to_string(i) + " is not connected.\n";
 		}
 	}
 }
@@ -52,6 +44,7 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 	
 	for (auto const& controller : m_Controllers)
 	{
+		controller->Update();
 		for (auto const& command : m_ConsoleCommands)
 		{
 			if (controller->IsDown(command.first.second))

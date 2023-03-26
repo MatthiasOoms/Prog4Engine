@@ -1,6 +1,5 @@
 #include "Command.h"
 #include "GameObject.h"
-#include <iostream>
 
 dae::Command::Command(GameObject* pGameObject)
 {
@@ -20,6 +19,5 @@ dae::MoveCommand::MoveCommand(GameObject* pGameObject, glm::vec3 dir, float spee
 
 void dae::MoveCommand::Execute(float elapsedSec)
 {
-	std::cout << "MOVED\n";
 	GetGameObject()->SetLocalPosition(GetGameObject()->GetTransform().GetLocalPosition() + (m_MoveDir * m_MoveSpeed * elapsedSec));
 }
