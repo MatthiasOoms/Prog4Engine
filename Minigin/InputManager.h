@@ -22,7 +22,7 @@ namespace dae
 		using ControllerKeyState = std::pair<ControllerKey, keyState>;
 		using ControllerCommandsMap = std::map<ControllerKeyState, std::unique_ptr<Command>>;
 
-		using KeyboardKey = std::pair<SDL_KeyCode, keyState>;
+		using KeyboardKey = std::pair<SDL_Scancode, keyState>;
 		using KeyboardCommands = std::map<KeyboardKey, std::unique_ptr<Command>>;
 
 		ControllerCommandsMap m_ConsoleCommands{};
@@ -37,6 +37,6 @@ namespace dae
 
 		int AddController();
 		void AddCommand(int controllerIdx, Controller::ControllerButton button, keyState state, std::unique_ptr<Command> pCommand);
-		void AddCommand(SDL_KeyCode key, keyState state, std::unique_ptr<Command> pCommand);
+		void AddCommand(SDL_Scancode key, keyState state, std::unique_ptr<Command> pCommand);
 	};
 }

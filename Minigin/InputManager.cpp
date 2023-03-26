@@ -53,15 +53,15 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 	// Held this frame
 	std::vector<Uint8> myCurrentState{ pCurrentKeyState, pCurrentKeyState + size }; 
 	// Held last frame
-	std::vector<Uint8> myPreviousState{ m_pPreviousKeyState };
+	std::vector<Uint8> myPreviousState{ m_pPreviousKeyState.begin(), m_pPreviousKeyState.end() };
 
-	std::vector<Uint8> myChangedState{}; // For calculations
-	std::vector<Uint8> myPressedState{}; // Pressed this frame
-	std::vector<Uint8> myReleasedState{}; // Released this frame
+	std::vector<Uint8> myChangedState( myCurrentState.size() ); // For calculations
+	std::vector<Uint8> myPressedState(myCurrentState.size()); // Pressed this frame
+	std::vector<Uint8> myReleasedState(myCurrentState.size()); // Released this frame
 
 	std::transform(myCurrentState.begin(), myCurrentState.end(), myPreviousState.begin(), myChangedState.begin(), std::bit_xor<Uint8>());
 	std::transform(myCurrentState.begin(), myCurrentState.end(), myChangedState.begin(), myPressedState.begin(), std::bit_and<Uint8>());
-	std::transform(myCurrentState.begin(), myCurrentState.end(), myChangedState.begin(), myReleasedState.begin(), 
+	std::transform(myCurrentState.begin(), myCurrentState.end(), myChangedState.begin(), myReleasedState.begin(),
 		[](Uint8 currentKey, Uint8 changedKey) 
 		{
 			return static_cast<Uint8>(changedKey & (~currentKey));
@@ -129,7 +129,7 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 		}
 	}
 
-	m_pPreviousKeyState = std::vector<Uint8>{ pCurrentKeyState, pCurrentKeyState + size };
+	m_pPreviousKeyState = std::move(myCurrentState);
 
 	return true;
 }
@@ -150,7 +150,7 @@ void dae::InputManager::AddCommand(int controllerIdx, Controller::ControllerButt
 	m_ConsoleCommands.insert(std::make_pair(statePair, std::move(pCommand)));
 }
 
-void dae::InputManager::AddCommand(SDL_KeyCode key, keyState state, std::unique_ptr<Command> pCommand)
+void dae::InputManager::AddCommand(SDL_Scancode key, keyState state, std::unique_ptr<Command> pCommand)
 {
 	KeyboardKey keyPair = std::make_pair(key, state);
 	m_KeyboardCommands[keyPair] = std::move(pCommand);
