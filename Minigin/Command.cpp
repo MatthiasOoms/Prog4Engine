@@ -1,5 +1,6 @@
 #include "Command.h"
 #include "GameObject.h"
+#include <iostream>
 
 dae::Command::Command(GameObject* pGameObject)
 {

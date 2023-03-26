@@ -33,7 +33,13 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 		}
 		if (e.type == SDL_KEYDOWN) 
 		{
-			
+			for (auto const& command : m_KeyboardCommands)
+			{
+				if (e.key.keysym.sym == command.first)
+				{
+					command.second->Execute(elapsedSec);
+				}
+			}
 		}
 		if (e.type == SDL_MOUSEBUTTONDOWN) 
 		{
@@ -78,4 +84,9 @@ void dae::InputManager::AddCommand(int controllerIdx, Controller::ControllerButt
 {
 	ControllerKey keyPair{ std::make_pair(controllerIdx, button) };
 	m_ConsoleCommands.insert(std::make_pair(keyPair, std::move(pCommand)));
+}
+
+void dae::InputManager::AddCommand(SDL_KeyCode key, std::unique_ptr<Command> pCommand)
+{
+	m_KeyboardCommands[key] = std::move(pCommand);
 }
