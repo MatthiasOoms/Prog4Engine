@@ -2,6 +2,8 @@
 #include "InputManager.h"
 #include <SDL.h>
 #include <Xinput.h>
+#include <algorithm> // std::tranform
+#include <functional> // std::bit_xor
 
 dae::InputManager::InputManager()
 {
@@ -33,19 +35,61 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 		}
 		if (e.type == SDL_KEYDOWN) 
 		{
-			for (auto const& command : m_KeyboardCommands)
-			{
-				if (e.key.keysym.sym == command.first)
-				{
-					command.second->Execute(elapsedSec);
-				}
-			}
 		}
 		if (e.type == SDL_MOUSEBUTTONDOWN) 
 		{
-			
 		}
 		// etc...
+	}
+
+	int size{};
+	m_pCurrentKeyState = SDL_GetKeyboardState(&size);
+
+	// Held this frame
+	std::vector<Uint8> myCurrentState{ m_pCurrentKeyState, m_pCurrentKeyState + size }; 
+	// Held last frame
+	std::vector<Uint8> myPreviousState{ m_pPreviousKeyState, m_pPreviousKeyState + size };
+
+	std::vector<Uint8> myChangedState{}; // For calculations
+	std::vector<Uint8> myPressedState{}; // Pressed this frame
+	std::vector<Uint8> myReleasedState{}; // Released this frame
+
+	std::transform(myCurrentState.begin(), myCurrentState.end(), myPreviousState.begin(), myChangedState.begin(), std::bit_xor<Uint8>());
+	std::transform(myCurrentState.begin(), myCurrentState.end(), myChangedState.begin(), myPressedState.begin(), std::bit_and<Uint8>());
+	std::transform(myCurrentState.begin(), myCurrentState.end(), myChangedState.begin(), myReleasedState.begin(), 
+		[](Uint8 currentKey, Uint8 changedKey) 
+		{
+			return changedKey & (~currentKey);
+		}
+	);
+
+
+
+	for (auto const& command : m_KeyboardCommands)
+	{
+		if (myPressedState[command.first.first])
+		{
+			if (command.first.second == keyState::isDown)
+			{
+				command.second->Execute(elapsedSec);
+			}
+		}
+
+		if (m_pCurrentKeyState[command.first.first])
+		{
+			if (command.first.second == keyState::isPressed)
+			{
+				command.second->Execute(elapsedSec);
+			}
+		}
+
+		if (myReleasedState[command.first.first])
+		{
+			if (command.first.second == keyState::isUp)
+			{
+				command.second->Execute(elapsedSec);
+			}
+		}
 	}
 	
 	for (auto const& controller : m_Controllers)
@@ -80,6 +124,8 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 		}
 	}
 
+	m_pPreviousKeyState = m_pCurrentKeyState;
+
 	return true;
 }
 
@@ -99,7 +145,8 @@ void dae::InputManager::AddCommand(int controllerIdx, Controller::ControllerButt
 	m_ConsoleCommands.insert(std::make_pair(statePair, std::move(pCommand)));
 }
 
-void dae::InputManager::AddCommand(SDL_KeyCode key, std::unique_ptr<Command> pCommand)
+void dae::InputManager::AddCommand(SDL_KeyCode key, keyState state, std::unique_ptr<Command> pCommand)
 {
-	m_KeyboardCommands[key] = std::move(pCommand);
+	KeyboardKey keyPair = std::make_pair(key, state);
+	m_KeyboardCommands[keyPair] = std::move(pCommand);
 }

@@ -13,8 +13,8 @@ namespace dae
 		XINPUT_STATE previousState{};
 		XINPUT_STATE currentState{};
 
-		WORD buttonsPressedThisFrame{};
-		WORD buttonsReleasedThisFrame{};
+		WORD m_ButtonsPressedThisFrame{};
+		WORD m_ButtonsReleasedThisFrame{};
 
 		int _controllerIdx;
 
@@ -33,12 +33,12 @@ namespace dae
 			XInputGetState(_controllerIdx, &currentState);
 
 			auto buttonChanges = currentState.Gamepad.wButtons ^ previousState.Gamepad.wButtons;
-			buttonsPressedThisFrame = buttonChanges & currentState.Gamepad.wButtons;
-			buttonsReleasedThisFrame = buttonChanges & (-currentState.Gamepad.wButtons);
+			m_ButtonsPressedThisFrame = buttonChanges & currentState.Gamepad.wButtons;
+			m_ButtonsReleasedThisFrame = buttonChanges & (~currentState.Gamepad.wButtons);
 		}
 
-		bool IsDownThisFrame(unsigned int button) const { return buttonsPressedThisFrame & button; };
-		bool IsUpThisFrame(unsigned int button) const { return buttonsReleasedThisFrame & button; };
+		bool IsDownThisFrame(unsigned int button) const { return m_ButtonsPressedThisFrame & button; };
+		bool IsUpThisFrame(unsigned int button) const { return m_ButtonsReleasedThisFrame & button; };
 		bool IsPressed(unsigned int button) const { return currentState.Gamepad.wButtons & button; };
 	};
 
