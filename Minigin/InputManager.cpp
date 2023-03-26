@@ -2,6 +2,33 @@
 #include "InputManager.h"
 #include <SDL.h>
 #include <Xinput.h>
+#include <iostream>
+#include <string>
+
+dae::InputManager::InputManager()
+{
+	DWORD dwResult;
+	for (DWORD i{}; i < XUSER_MAX_COUNT; ++i)
+	{
+		XINPUT_STATE state;
+		ZeroMemory(&state, sizeof(XINPUT_STATE));
+
+		// Simply get the state of the controller from XInput.
+		dwResult = XInputGetState(i, &state);
+
+		if (dwResult == ERROR_SUCCESS)
+		{
+			// Controller is connected
+			std::cout << " Controller " + std::to_string(i) + " is connected.\n";
+			AddController();
+		}
+		else
+		{
+			// Controller is not connected
+			std::cout << " Controller " + std::to_string(i) + " is not connected.\n";
+		}
+	}
+}
 
 bool dae::InputManager::HandleInput(float elapsedSec)
 {
@@ -47,7 +74,10 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 
 int dae::InputManager::AddController()
 {
-	m_Controllers.push_back(std::make_unique<Controller>(int(m_Controllers.size()) + 1));
+	if (int(m_Controllers.size()) < XUSER_MAX_COUNT)
+	{
+		m_Controllers.push_back(std::make_unique<Controller>(int(m_Controllers.size())));
+	}
 	return int(m_Controllers.size());
 }
 

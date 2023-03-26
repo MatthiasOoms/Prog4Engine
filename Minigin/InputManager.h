@@ -16,6 +16,7 @@ namespace dae
 		std::vector<std::unique_ptr<Controller>> m_Controllers{};
 
 	public:
+		InputManager();
 		bool HandleInput(float elapsedSec);
 
 		int AddController();

@@ -24,6 +24,14 @@ namespace dae
 			ButtonY = 0x8000
 		};
 
+		enum class ControllerIdx
+		{
+			First,
+			Second,
+			Third,
+			Fourth
+		};
+
 		void Update();
 
 		bool IsDown(ControllerButton button) const;
