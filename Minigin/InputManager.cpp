@@ -22,6 +22,11 @@ dae::InputManager::InputManager()
 			AddController();
 		}
 	}
+
+	int size{};
+	auto temp = SDL_GetKeyboardState(&size);
+	m_pPreviousKeyState = std::vector<Uint8>{ temp, temp + size };
+
 }
 
 bool dae::InputManager::HandleInput(float elapsedSec)
@@ -43,12 +48,12 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 	}
 
 	int size{};
-	m_pCurrentKeyState = SDL_GetKeyboardState(&size);
+	auto pCurrentKeyState = SDL_GetKeyboardState(&size);
 
 	// Held this frame
-	std::vector<Uint8> myCurrentState{ m_pCurrentKeyState, m_pCurrentKeyState + size }; 
+	std::vector<Uint8> myCurrentState{ pCurrentKeyState, pCurrentKeyState + size }; 
 	// Held last frame
-	std::vector<Uint8> myPreviousState{ m_pPreviousKeyState, m_pPreviousKeyState + size };
+	std::vector<Uint8> myPreviousState{ m_pPreviousKeyState };
 
 	std::vector<Uint8> myChangedState{}; // For calculations
 	std::vector<Uint8> myPressedState{}; // Pressed this frame
@@ -59,7 +64,7 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 	std::transform(myCurrentState.begin(), myCurrentState.end(), myChangedState.begin(), myReleasedState.begin(), 
 		[](Uint8 currentKey, Uint8 changedKey) 
 		{
-			return changedKey & (~currentKey);
+			return static_cast<Uint8>(changedKey & (~currentKey));
 		}
 	);
 
@@ -75,7 +80,7 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 			}
 		}
 
-		if (m_pCurrentKeyState[command.first.first])
+		if (pCurrentKeyState[command.first.first])
 		{
 			if (command.first.second == keyState::isPressed)
 			{
@@ -124,7 +129,7 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 		}
 	}
 
-	m_pPreviousKeyState = m_pCurrentKeyState;
+	m_pPreviousKeyState = std::vector<Uint8>{ pCurrentKeyState, pCurrentKeyState + size };
 
 	return true;
 }

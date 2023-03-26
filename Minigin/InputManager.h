@@ -29,8 +29,7 @@ namespace dae
 		KeyboardCommands m_KeyboardCommands{};
 		std::vector<std::unique_ptr<Controller>> m_Controllers{};
 
-		const Uint8* m_pCurrentKeyState{};
-		const Uint8* m_pPreviousKeyState{};
+		std::vector<Uint8> m_pPreviousKeyState{};
 
 	public:
 		InputManager();
