@@ -110,6 +110,7 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 						{
 							command.second->Execute(elapsedSec);
 						}
+						break;
 					}
 				case keyState::isPressed:
 					{
@@ -117,6 +118,7 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 						{
 							command.second->Execute(elapsedSec);
 						}
+						break;
 					}
 				case keyState::isUp:
 					{
@@ -124,6 +126,7 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 						{
 							command.second->Execute(elapsedSec);
 						}
+						break;
 					}
 			}
 		}
