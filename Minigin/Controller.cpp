@@ -10,36 +10,36 @@ namespace dae
 {
 	class Controller::ControllerImpl
 	{
-		XINPUT_STATE previousState{};
-		XINPUT_STATE currentState{};
+		XINPUT_STATE m_PreviousState{};
+		XINPUT_STATE m_CurrentState{};
 
 		WORD m_ButtonsPressedThisFrame{};
 		WORD m_ButtonsReleasedThisFrame{};
 
-		int _controllerIdx;
+		int m_ControllerIdx;
 
 	public:
 		ControllerImpl(int controllerIdx)
-			: _controllerIdx{ controllerIdx }
+			: m_ControllerIdx{ controllerIdx }
 		{
-			ZeroMemory(&previousState, sizeof(XINPUT_STATE));
-			ZeroMemory(&currentState, sizeof(XINPUT_STATE));
+			ZeroMemory(&m_PreviousState, sizeof(XINPUT_STATE));
+			ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
 		}
 
 		void Update()
 		{
-			CopyMemory(&previousState, &currentState, sizeof(XINPUT_STATE));
-			ZeroMemory(&currentState, sizeof(XINPUT_STATE));
-			XInputGetState(_controllerIdx, &currentState);
+			CopyMemory(&m_PreviousState, &m_CurrentState, sizeof(XINPUT_STATE));
+			ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
+			XInputGetState(m_ControllerIdx, &m_CurrentState);
 
-			auto buttonChanges = currentState.Gamepad.wButtons ^ previousState.Gamepad.wButtons;
-			m_ButtonsPressedThisFrame = buttonChanges & currentState.Gamepad.wButtons;
-			m_ButtonsReleasedThisFrame = buttonChanges & (~currentState.Gamepad.wButtons);
+			auto buttonChanges = m_CurrentState.Gamepad.wButtons ^ m_PreviousState.Gamepad.wButtons;
+			m_ButtonsPressedThisFrame = buttonChanges & m_CurrentState.Gamepad.wButtons;
+			m_ButtonsReleasedThisFrame = buttonChanges & (~m_CurrentState.Gamepad.wButtons);
 		}
 
 		bool IsDownThisFrame(unsigned int button) const { return m_ButtonsPressedThisFrame & button; };
 		bool IsUpThisFrame(unsigned int button) const { return m_ButtonsReleasedThisFrame & button; };
-		bool IsPressed(unsigned int button) const { return currentState.Gamepad.wButtons & button; };
+		bool IsPressed(unsigned int button) const { return m_CurrentState.Gamepad.wButtons & button; };
 	};
 
 	Controller::Controller(int controllerIdx)
