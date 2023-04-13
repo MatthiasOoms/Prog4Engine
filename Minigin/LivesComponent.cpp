@@ -1,4 +1,5 @@
 #include "LivesComponent.h"
+#include "GameObject.h"
 #include "Observer.h"
 #include "Subject.h"
 
@@ -7,6 +8,12 @@ dae::LivesComponent::LivesComponent(GameObject* pOwner)
 	, m_CurrentLives{ 3 }
 {
 	m_pSubject = new Subject{};
+}
+
+dae::LivesComponent::~LivesComponent()
+{
+	delete m_pSubject;
+	m_pSubject = nullptr;
 }
 
 void dae::LivesComponent::AddObserver(Observer* pObserver)
@@ -24,7 +31,7 @@ void dae::LivesComponent::Damage()
 	if (m_CurrentLives > 0)
 	{
 		--m_CurrentLives;
-		m_pSubject->Notify(*m_pOwner, Event::PlayerDeath);
+		m_pSubject->OnNotify(Event::PlayerDeath);
 	}
 }
 
@@ -33,7 +40,7 @@ void dae::LivesComponent::Damage(int amount)
 	if (m_CurrentLives > 0)
 	{
 		m_CurrentLives -= amount;
-		m_pSubject->Notify(*m_pOwner, Event::PlayerDeath);
+		m_pSubject->OnNotify(Event::PlayerDeath);
 	}
 }
 

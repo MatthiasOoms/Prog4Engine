@@ -5,13 +5,20 @@
 
 namespace dae
 {
+	class GameObject;
+	class LivesComponent;
+
 	class LivesObserverComponent final : public Component, public Observer
 	{
 	public:
-		LivesObserverComponent(GameObject* pObj, LivesComponent* pLivesComp);
+		virtual void Update(float) override {};
+		virtual void Render(float) const override {};
+
+		LivesObserverComponent(GameObject* pObj);
 		virtual ~LivesObserverComponent();
 
-		void Notify(Event event);
+		virtual void OnNotify(Event event) override;
+		void SetLivesComponent(LivesComponent* pLivesComp);
 
 	private:
 		std::string m_LivesText;

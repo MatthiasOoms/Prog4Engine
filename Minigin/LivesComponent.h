@@ -10,7 +10,7 @@ namespace dae
 	{
 	public:
 		LivesComponent(GameObject* pOwner);
-		~LivesComponent() = default;
+		~LivesComponent();
 
 		LivesComponent(const LivesComponent& other) = delete;
 		LivesComponent(LivesComponent&& other) = delete;
