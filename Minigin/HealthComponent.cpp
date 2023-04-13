@@ -1,38 +1,36 @@
 #include "HealthComponent.h"
+#include "Subject.h"
+#include "Observer.h"
 
 dae::HealthComponent::HealthComponent(GameObject* pOwner)
 	: UpdateComponent(pOwner)
-	, m_MaxHealth{ 10 }
+	, m_CurrentHealth{ 10 }
 {
-	m_CurrentHealth = m_MaxHealth;
+	m_pSubject = new Subject{};
+}
+
+void dae::HealthComponent::AddObserver(Observer* pObserver)
+{
+	m_pSubject->addObserver(pObserver);
 }
 
 void dae::HealthComponent::Damage(int amount)
 {
 	m_CurrentHealth -= amount;
-	if (m_CurrentHealth > m_MaxHealth)
+	if (m_CurrentHealth <= 0)
 	{
-		m_CurrentHealth = m_MaxHealth;
-	}
-	else if (m_CurrentHealth < 0)
-	{
-		m_CurrentHealth = 0;
+		m_pSubject->Notify(Event::PlayerDeath);
 	}
 }
 
-void dae::HealthComponent::SetMaxHealth(int maxHealth)
+void dae::HealthComponent::SetHealth(int health)
 {
-	if (maxHealth > 0)
+	if (health > 0)
 	{
-		m_MaxHealth = maxHealth;
-		if (m_CurrentHealth > m_MaxHealth)
-		{
-			m_CurrentHealth = m_MaxHealth;
-		}
+		m_CurrentHealth = health;
 	}
 	else
 	{
-		m_MaxHealth = 1;
-		m_CurrentHealth = m_MaxHealth;
+		m_CurrentHealth = 1;
 	}
 }

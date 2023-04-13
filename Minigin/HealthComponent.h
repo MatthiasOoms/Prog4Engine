@@ -3,6 +3,9 @@
 
 namespace dae
 {
+	class Subject;
+	class Observer;
+
 	class HealthComponent final : public UpdateComponent
 	{
 	public:
@@ -17,12 +20,14 @@ namespace dae
 		virtual void Update(float) override {};
 		virtual void Render(float) const override {};
 
+		void AddObserver(Observer* pObserver);
 		void Damage(int amount);
-		void SetMaxHealth(int health);
+		void SetHealth(int health);
 
 	private:
-		int m_MaxHealth;
 		int m_CurrentHealth;
+
+		Subject* m_pSubject;
 	};
 }
 
