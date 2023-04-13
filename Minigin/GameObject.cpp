@@ -100,7 +100,12 @@ void dae::GameObject::AddChild(GameObject* pChild)
 
 void dae::GameObject::RemoveChild(GameObject* pChild)
 {
-	// Not removed from scene, also what about children's children (Set their new parent in destructor)
+	// Not removed from scene
+	for (int i{}; i < pChild->GetChildCount(); ++i)
+	{
+		pChild->GetChildAt(i)->SetParent(this, true);
+	}
+	
 	std::erase(m_pChildren, pChild);
 }
 
