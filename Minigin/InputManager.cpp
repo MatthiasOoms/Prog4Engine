@@ -1,32 +1,20 @@
 #include <windows.h>
 #include "InputManager.h"
 #include <SDL.h>
-#include <Xinput.h>
 #include <algorithm> // std::tranform
 #include <functional> // std::bit_xor
 
 dae::InputManager::InputManager()
 {
-	DWORD dwResult;
-	for (DWORD i{}; i < XUSER_MAX_COUNT; ++i)
+	for (int i{}; i < m_MaxControllers; ++i)
 	{
-		XINPUT_STATE state;
-		ZeroMemory(&state, sizeof(XINPUT_STATE));
-
-		// Simply get the state of the controller from XInput.
-		dwResult = XInputGetState(i, &state);
-
-		if (dwResult == ERROR_SUCCESS)
-		{
-			// Controller is connected
-			AddController();
-		}
+		// Controller is connected
+		AddController();
 	}
 
 	int size{};
 	auto temp = SDL_GetKeyboardState(&size);
 	m_pPreviousKeyState = std::vector<Uint8>{ temp, temp + size };
-
 }
 
 bool dae::InputManager::HandleInput(float elapsedSec)
@@ -139,7 +127,7 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 
 int dae::InputManager::AddController()
 {
-	if (int(m_Controllers.size()) < XUSER_MAX_COUNT)
+	if (int(m_Controllers.size()) < m_MaxControllers)
 	{
 		m_Controllers.push_back(std::make_unique<Controller>(int(m_Controllers.size())));
 	}

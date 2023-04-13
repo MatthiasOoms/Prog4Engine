@@ -31,6 +31,8 @@ namespace dae
 
 		std::vector<Uint8> m_pPreviousKeyState{};
 
+		const int m_MaxControllers{ 4 };
+
 	public:
 		InputManager();
 		bool HandleInput(float elapsedSec);
