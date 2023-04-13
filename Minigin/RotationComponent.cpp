@@ -3,7 +3,7 @@
 #include <SDL_stdinc.h> // M_PI
 
 dae::RotationComponent::RotationComponent(GameObject* pOwner)
-	: Component(pOwner)
+	: UpdateComponent(pOwner)
 	, m_Distance{}
 	, m_RotAngle{}
 	, m_RotSpeed{180}

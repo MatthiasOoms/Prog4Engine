@@ -3,7 +3,7 @@
 
 namespace dae
 {
-	class RotationComponent : public Component
+	class RotationComponent final : public UpdateComponent
 	{
 	public:
 		RotationComponent(GameObject* pOwner);

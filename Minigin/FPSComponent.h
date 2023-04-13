@@ -7,7 +7,7 @@ namespace dae
 {
 	class TextComponent;
 
-	class FPSComponent : public UpdateComponent
+	class FPSComponent final : public UpdateComponent
 	{
 	public:
 		FPSComponent(GameObject* pOwner);

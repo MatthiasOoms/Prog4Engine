@@ -99,6 +99,9 @@
     <ClInclude Include="Controller.h">
       <Filter>Engine Files\Input</Filter>
     </ClInclude>
+    <ClInclude Include="HealthComponent.h">
+      <Filter>Engine Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -154,6 +157,9 @@
     </ClCompile>
     <ClCompile Include="Controller.cpp">
       <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthComponent.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

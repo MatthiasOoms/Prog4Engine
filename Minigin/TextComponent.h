@@ -11,7 +11,7 @@ namespace dae
 	class Transform;
 	class Font;
 
-	class TextComponent : public UpdateComponent
+	class TextComponent final : public UpdateComponent
 	{
 	public:
 		TextComponent(GameObject* pOwner);

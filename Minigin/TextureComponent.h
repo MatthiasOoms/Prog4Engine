@@ -7,7 +7,7 @@ namespace dae
 	class Texture2D;
 	class GameObject;
 
-	class TextureComponent : public RenderComponent
+	class TextureComponent final : public RenderComponent
 	{
 	public:
 		TextureComponent(GameObject* pOwner);
