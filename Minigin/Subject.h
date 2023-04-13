@@ -3,17 +3,20 @@
 
 namespace dae
 {
+	class GameObject;
 	class Observer;
+	enum class Event;
 
-	class Subject
+	class Subject final
 	{
 	private:
 		std::vector<Observer*> m_pObservers;
 
-	protected:
-		void Notify(const GameObject& object, Event event);
-
 	public:
+		Subject();
+		virtual ~Subject();
+
+		void Notify(const GameObject& object, Event event);
 		void addObserver(Observer* pObserver);
 		void removeObserver(Observer* pObserver);
 	};

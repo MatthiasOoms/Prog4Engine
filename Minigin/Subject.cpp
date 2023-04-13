@@ -2,6 +2,20 @@
 #include "Observer.h"
 #include "GameObject.h"
 
+dae::Subject::Subject()
+	: m_pObservers{}
+{
+}
+
+dae::Subject::~Subject()
+{
+	for (int i{}; i < m_pObservers.size(); ++i)
+	{
+		delete m_pObservers[i];
+		m_pObservers[i] = nullptr;
+	}
+}
+
 void dae::Subject::Notify(const GameObject& object, Event event)
 {
     for (int i{}; i < m_pObservers.size(); ++i)

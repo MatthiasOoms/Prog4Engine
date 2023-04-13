@@ -99,7 +99,7 @@
     <ClInclude Include="Controller.h">
       <Filter>Engine Files\Input</Filter>
     </ClInclude>
-    <ClInclude Include="HealthComponent.h">
+    <ClInclude Include="LivesComponent.h">
       <Filter>Engine Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="Observer.h">
@@ -110,6 +110,9 @@
     </ClInclude>
     <ClInclude Include="Subject.h">
       <Filter>Engine Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="LivesObserverComponent.h">
+      <Filter>Engine Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -167,7 +170,7 @@
     <ClCompile Include="Controller.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="HealthComponent.cpp">
+    <ClCompile Include="LivesComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="Observer.cpp">
@@ -178,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="Subject.cpp">
       <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="LivesObserverComponent.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
