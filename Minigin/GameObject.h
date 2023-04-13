@@ -98,6 +98,8 @@ namespace dae
 				m_pComponents.erase(nth);
 			}
 		}
+		delete temp;
+		temp = nullptr;
 	}
 
 	template<typename Comp>
