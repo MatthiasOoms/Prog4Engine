@@ -13,22 +13,21 @@ namespace dae
 				// Should also be a command that doesn't need a GameObject
 				//
 				// Made MoveCommand final, added virtual destructor
-	protected:
-		GameObject* GetGameObject() const { return m_pGameObject; }
 	public:
-		explicit Command(GameObject* pGameObject);
+		explicit Command();
 		virtual ~Command();
 		virtual void Execute(float) = 0;
-	private:
-		GameObject* m_pGameObject;
 	};
 
 	class MoveCommand final : public Command
 	{
 	private:
+		GameObject* m_pGameObject;
 		glm::vec3 m_MoveDir;
 		float m_MoveSpeed;
 		//float m_Acceleration; // Not present in my game
+	protected:
+		GameObject* GetGameObject() { return m_pGameObject; }
 	public:
 		MoveCommand(GameObject* pGameObject, glm::vec3 dir, float speed);
 		virtual ~MoveCommand() = default;
