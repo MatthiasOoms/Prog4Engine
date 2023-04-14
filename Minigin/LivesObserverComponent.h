@@ -19,6 +19,7 @@ namespace dae
 
 		virtual void OnNotify(Event event) override;
 		void SetLivesComponent(LivesComponent* pLivesComp);
+		void UpdateText();
 
 	private:
 		std::string m_LivesText;

@@ -26,7 +26,7 @@ int dae::LivesComponent::GetLives() const
 	return m_CurrentLives;
 }
 
-void dae::LivesComponent::Damage()
+void dae::LivesComponent::LowerLives()
 {
 	if (m_CurrentLives > 0)
 	{
@@ -35,7 +35,7 @@ void dae::LivesComponent::Damage()
 	}
 }
 
-void dae::LivesComponent::Damage(int amount)
+void dae::LivesComponent::LowerLives(int amount)
 {
 	if (m_CurrentLives > 0)
 	{

@@ -20,18 +20,7 @@ void dae::LivesObserverComponent::OnNotify(Event event)
 	switch (event)
 	{
 	case dae::Event::PlayerDeath:
-
-		// Get lives and put in text
-		if (m_pLivesComponent)
-		{
-			m_LivesText = std::to_string(m_pLivesComponent->GetLives());
-		}
-
-		// Give text to TxtDisplay
-		if (m_pOwner->HasComponent<TextComponent>() && m_LivesText.size() > 0)
-		{
-			m_pOwner->GetComponent<TextComponent>()->SetText(m_LivesText);
-		}
+		UpdateText();
 		break;
 	case dae::Event::EnemyDeath:
 		break;
@@ -45,5 +34,21 @@ void dae::LivesObserverComponent::OnNotify(Event event)
 void dae::LivesObserverComponent::SetLivesComponent(LivesComponent* pLivesComp)
 {
 	m_pLivesComponent = pLivesComp;
+	UpdateText();
+}
+
+void dae::LivesObserverComponent::UpdateText()
+{
+	// Get lives and put in text
+	if (m_pLivesComponent)
+	{
+		m_LivesText = std::to_string(m_pLivesComponent->GetLives());
+	}
+
+	// Give text to TxtDisplay
+	if (m_pOwner->HasComponent<TextComponent>() && m_LivesText.size() > 0)
+	{
+		m_pOwner->GetComponent<TextComponent>()->SetText(m_LivesText);
+	}
 }
 
