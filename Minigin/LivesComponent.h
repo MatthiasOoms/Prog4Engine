@@ -20,8 +20,8 @@ namespace dae
 		virtual void Update(float) override {};
 		virtual void Render(float) const override {};
 
-		void Damage();
-		void Damage(int amount);
+		void LowerLives();
+		void LowerLives(int amount);
 		void SetLives(int health);
 		void AddObserver(Observer* pObserver);
 		int GetLives() const;

@@ -43,6 +43,14 @@ void dae::LivesObserverComponent::UpdateText()
 	if (m_pLivesComponent)
 	{
 		m_LivesText = std::to_string(m_pLivesComponent->GetLives());
+		if (m_pLivesComponent->GetLives() == 1)
+		{
+			m_LivesText += " life";
+		}
+		else
+		{
+			m_LivesText += " lives";
+		}
 	}
 
 	// Give text to TxtDisplay
