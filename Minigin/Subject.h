@@ -16,7 +16,7 @@ namespace dae
 		Subject();
 		virtual ~Subject();
 
-		void OnNotify(Event event);
+		void OnNotify(GameObject* obj, Event event);
 		void addObserver(Observer* pObserver);
 		void removeObserver(Observer* pObserver);
 	};

@@ -17,12 +17,10 @@ namespace dae
 		LivesObserverComponent(GameObject* pObj);
 		virtual ~LivesObserverComponent();
 
-		virtual void OnNotify(Event event) override;
-		void SetLivesComponent(LivesComponent* pLivesComp);
-		void UpdateText();
+		virtual void OnNotify(GameObject* obj, Event event) override;
+		void UpdateText(GameObject* obj);
 
 	private:
 		std::string m_LivesText;
-		LivesComponent* m_pLivesComponent;
 	};
 }

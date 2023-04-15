@@ -11,11 +11,11 @@ dae::Subject::~Subject()
 {
 }
 
-void dae::Subject::OnNotify(Event event)
+void dae::Subject::OnNotify(GameObject* obj, Event event)
 {
     for (int i{}; i < m_pObservers.size(); ++i)
     {
-        m_pObservers[i]->OnNotify(event);
+        m_pObservers[i]->OnNotify(obj, event);
     }
 }
 

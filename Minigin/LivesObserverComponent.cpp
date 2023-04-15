@@ -5,22 +5,19 @@
 
 dae::LivesObserverComponent::LivesObserverComponent(GameObject* pObj)
 	: Component(pObj)
-	, m_pLivesComponent{ nullptr }
 {
 }
 
 dae::LivesObserverComponent::~LivesObserverComponent()
 {
-	m_pOwner = nullptr;
-	m_pLivesComponent = nullptr;
 }
 
-void dae::LivesObserverComponent::OnNotify(Event event)
+void dae::LivesObserverComponent::OnNotify(GameObject* obj, Event event)
 {
 	switch (event)
 	{
 	case dae::Event::PlayerDeath:
-		UpdateText();
+		UpdateText(obj);
 		break;
 	case dae::Event::EnemyDeath:
 		break;
@@ -31,19 +28,14 @@ void dae::LivesObserverComponent::OnNotify(Event event)
 	}
 }
 
-void dae::LivesObserverComponent::SetLivesComponent(LivesComponent* pLivesComp)
-{
-	m_pLivesComponent = pLivesComp;
-	UpdateText();
-}
-
-void dae::LivesObserverComponent::UpdateText()
+void dae::LivesObserverComponent::UpdateText(GameObject* obj)
 {
 	// Get lives and put in text
-	if (m_pLivesComponent)
+	if (obj->HasComponent<LivesComponent>())
 	{
-		m_LivesText = std::to_string(m_pLivesComponent->GetLives());
-		if (m_pLivesComponent->GetLives() == 1)
+		LivesComponent* pLivesComponent = obj->GetComponent<LivesComponent>();
+		m_LivesText = std::to_string(pLivesComponent->GetLives());
+		if (pLivesComponent->GetLives() == 1)
 		{
 			m_LivesText += " life";
 		}

@@ -31,7 +31,7 @@ void dae::LivesComponent::LowerLives()
 	if (m_CurrentLives > 0)
 	{
 		--m_CurrentLives;
-		m_pSubject->OnNotify(Event::PlayerDeath);
+		m_pSubject->OnNotify(m_pOwner, Event::PlayerDeath);
 	}
 }
 
@@ -40,7 +40,7 @@ void dae::LivesComponent::LowerLives(int amount)
 	if (m_CurrentLives > 0)
 	{
 		m_CurrentLives -= amount;
-		m_pSubject->OnNotify(Event::PlayerDeath);
+		m_pSubject->OnNotify(m_pOwner, Event::PlayerDeath);
 	}
 }
 

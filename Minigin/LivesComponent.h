@@ -6,7 +6,7 @@ namespace dae
 	class Subject;
 	class Observer;
 
-	class LivesComponent final : public UpdateComponent
+	class LivesComponent final : public Component
 	{
 	public:
 		LivesComponent(GameObject* pOwner);
