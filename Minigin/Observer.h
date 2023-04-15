@@ -9,6 +9,7 @@ namespace dae
 	{
 		PlayerDeath,
 		EnemyDeath,
+		ScoreIncrement,
 		ACH_WIN_ONE_GAME
 	};
 

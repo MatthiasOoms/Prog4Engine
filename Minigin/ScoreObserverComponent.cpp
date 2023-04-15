@@ -1,0 +1,46 @@
+#include "ScoreObserverComponent.h"
+#include "ScoreComponent.h"
+#include "TextComponent.h"
+#include "GameObject.h"
+
+dae::ScoreObserverComponent::ScoreObserverComponent(GameObject* pObj)
+	: Component(pObj)
+{
+}
+
+dae::ScoreObserverComponent::~ScoreObserverComponent()
+{
+}
+
+void dae::ScoreObserverComponent::OnNotify(GameObject* obj, Event event)
+{
+	switch (event)
+	{
+	case dae::Event::PlayerDeath:
+		break;
+	case dae::Event::EnemyDeath:
+		break;
+	case dae::Event::ScoreIncrement:
+		UpdateText(obj);
+		break;
+	case dae::Event::ACH_WIN_ONE_GAME:
+		break;
+	default:
+		break;
+	}
+}
+
+void dae::ScoreObserverComponent::UpdateText(GameObject* obj)
+{
+	// Get score and put in text
+	if (obj->HasComponent<ScoreComponent>())
+	{
+		m_ScoreText = "Score: " + std::to_string(obj->GetComponent<ScoreComponent>()->GetScore());
+	}
+
+	// Give text to TxtDisplay
+	if (m_pOwner->HasComponent<TextComponent>() && m_ScoreText.size() > 0)
+	{
+		m_pOwner->GetComponent<TextComponent>()->SetText(m_ScoreText);
+	}
+}

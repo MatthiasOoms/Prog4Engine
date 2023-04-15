@@ -4,7 +4,7 @@
 #include "Subject.h"
 
 dae::LivesComponent::LivesComponent(GameObject* pOwner)
-	: UpdateComponent(pOwner)
+	: Component(pOwner)
 	, m_CurrentLives{ 3 }
 {
 	m_pSubject = new Subject{};

@@ -21,6 +21,8 @@ void dae::LivesObserverComponent::OnNotify(GameObject* obj, Event event)
 		break;
 	case dae::Event::EnemyDeath:
 		break;
+	case dae::Event::ScoreIncrement:
+		break;
 	case dae::Event::ACH_WIN_ONE_GAME:
 		break;
 	default:
@@ -34,21 +36,21 @@ void dae::LivesObserverComponent::UpdateText(GameObject* obj)
 	if (obj->HasComponent<LivesComponent>())
 	{
 		LivesComponent* pLivesComponent = obj->GetComponent<LivesComponent>();
-		m_LivesText = std::to_string(pLivesComponent->GetLives());
+		m_ScoreText = std::to_string(pLivesComponent->GetLives());
 		if (pLivesComponent->GetLives() == 1)
 		{
-			m_LivesText += " life";
+			m_ScoreText += " life";
 		}
 		else
 		{
-			m_LivesText += " lives";
+			m_ScoreText += " lives";
 		}
 	}
 
 	// Give text to TxtDisplay
-	if (m_pOwner->HasComponent<TextComponent>() && m_LivesText.size() > 0)
+	if (m_pOwner->HasComponent<TextComponent>() && m_ScoreText.size() > 0)
 	{
-		m_pOwner->GetComponent<TextComponent>()->SetText(m_LivesText);
+		m_pOwner->GetComponent<TextComponent>()->SetText(m_ScoreText);
 	}
 }
 
