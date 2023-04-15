@@ -31,7 +31,7 @@ dae::KillCommand::KillCommand(GameObject* pGameObject)
 {
 }
 
-void dae::KillCommand::Execute(float elapsedSec)
+void dae::KillCommand::Execute(float)
 {
 	if (GetGameObject()->HasComponent<LivesComponent>())
 	{
@@ -45,7 +45,7 @@ dae::ScoreCommand::ScoreCommand(GameObject* pGameObject)
 {
 }
 
-void dae::ScoreCommand::Execute(float elapsedSec)
+void dae::ScoreCommand::Execute(float)
 {
 	if (GetGameObject()->HasComponent<ScoreComponent>())
 	{
