@@ -5,9 +5,9 @@
 
 dae::ScoreComponent::ScoreComponent(GameObject* pOwner)
 	: Component{ pOwner }
-	, m_Score{}
 {
 	m_pSubject = new Subject{};
+	SetScore(0);
 }
 
 dae::ScoreComponent::~ScoreComponent()
@@ -19,11 +19,13 @@ dae::ScoreComponent::~ScoreComponent()
 void dae::ScoreComponent::IncreaseScore(int amount)
 {
 	m_Score += amount;
+	m_pSubject->OnNotify(m_pOwner, Event::ScoreChange);
 }
 
 void dae::ScoreComponent::SetScore(int score)
 {
 	m_Score = score;
+	m_pSubject->OnNotify(m_pOwner, Event::ScoreChange);
 }
 
 void dae::ScoreComponent::AddObserver(Observer* pObserver)

@@ -20,7 +20,7 @@ void dae::ScoreObserverComponent::OnNotify(GameObject* obj, Event event)
 		break;
 	case dae::Event::EnemyDeath:
 		break;
-	case dae::Event::ScoreIncrement:
+	case dae::Event::ScoreChange:
 		UpdateText(obj);
 		break;
 	case dae::Event::ACH_WIN_ONE_GAME:

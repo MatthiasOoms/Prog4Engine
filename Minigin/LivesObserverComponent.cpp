@@ -21,7 +21,7 @@ void dae::LivesObserverComponent::OnNotify(GameObject* obj, Event event)
 		break;
 	case dae::Event::EnemyDeath:
 		break;
-	case dae::Event::ScoreIncrement:
+	case dae::Event::ScoreChange:
 		break;
 	case dae::Event::ACH_WIN_ONE_GAME:
 		break;

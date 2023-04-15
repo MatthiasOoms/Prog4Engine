@@ -5,8 +5,8 @@
 
 dae::LivesComponent::LivesComponent(GameObject* pOwner)
 	: Component(pOwner)
-	, m_CurrentLives{ 3 }
 {
+	SetLives(3);
 	m_pSubject = new Subject{};
 }
 
