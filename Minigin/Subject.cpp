@@ -13,7 +13,7 @@ dae::Subject::~Subject()
 
 void dae::Subject::OnNotify(GameObject* obj, Event event)
 {
-    for (int i{}; i < m_pObservers.size(); ++i)
+    for (size_t i{}; i < m_pObservers.size(); ++i)
     {
         m_pObservers[i]->OnNotify(obj, event);
     }

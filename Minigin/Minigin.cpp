@@ -14,6 +14,8 @@
 
 #include <steam_api_common.h>
 
+
+
 SDL_Window* g_window{};
 
 void PrintSDLVersion()
