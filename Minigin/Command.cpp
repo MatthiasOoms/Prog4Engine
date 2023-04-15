@@ -1,5 +1,7 @@
 #include "Command.h"
 #include "GameObject.h"
+#include "LivesComponent.h"
+#include "ScoreComponent.h"
 #include <iostream>
 
 dae::Command::Command()
@@ -22,3 +24,17 @@ void dae::MoveCommand::Execute(float elapsedSec)
 {
 	GetGameObject()->SetLocalPosition(GetGameObject()->GetTransform().GetLocalPosition() + (m_MoveDir * m_MoveSpeed * elapsedSec));
 }
+
+//dae::KillCommand::KillCommand(GameObject* pGameObject)
+//	: Command{ }
+//	, m_pGameObject{ pGameObject }
+//{
+//}
+//
+//void dae::KillCommand::Execute(float elapsedSec)
+//{
+//	if (GetGameObject()->HasComponent<LivesComponent>())
+//	{
+//		GetGameObject()->GetComponent<LivesComponent>()->LowerLives();
+//	}
+//}
