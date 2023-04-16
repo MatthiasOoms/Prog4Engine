@@ -1,5 +1,4 @@
 #include "SteamAchievements.h"
-#include <debugapi.h>
 
 dae::SteamAchievements::SteamAchievements(Achievement_t* Achievements, int NumAchievements) :
     m_iAppID(0),
@@ -12,6 +11,12 @@ dae::SteamAchievements::SteamAchievements(Achievement_t* Achievements, int NumAc
     m_pAchievements = Achievements;
     m_iNumAchievements = NumAchievements;
     RequestStats();
+}
+
+dae::SteamAchievements::~SteamAchievements()
+{
+	delete m_pAchievements;
+	m_pAchievements = nullptr;
 }
 
 bool dae::SteamAchievements::RequestStats()
@@ -49,7 +54,6 @@ void dae::SteamAchievements::OnUserStatsReceived(UserStatsReceived_t* pCallback)
 	{
 		if (k_EResultOK == pCallback->m_eResult)
 		{
-			OutputDebugString("Received stats and achievements from Steam\n");
 			m_bInitialized = true;
 
 			// load achievements
@@ -70,7 +74,6 @@ void dae::SteamAchievements::OnUserStatsReceived(UserStatsReceived_t* pCallback)
 		{
 			char buffer[128];
 			_snprintf(buffer, 128, "RequestStats - failed, %d\n", pCallback->m_eResult);
-			OutputDebugString(buffer);
 		}
 	}
 }
@@ -82,13 +85,11 @@ void dae::SteamAchievements::OnUserStatsStored(UserStatsStored_t* pCallback)
 	{
 		if (k_EResultOK == pCallback->m_eResult)
 		{
-			OutputDebugString("Stored stats for Steam\n");
 		}
 		else
 		{
 			char buffer[128];
 			_snprintf(buffer, 128, "StatsStored - failed, %d\n", pCallback->m_eResult);
-			OutputDebugString(buffer);
 		}
 	}
 }
@@ -98,6 +99,5 @@ void dae::SteamAchievements::OnAchievementStored(UserAchievementStored_t * pCall
 	// we may get callbacks for other games' stats arriving, ignore them
 	if (m_iAppID == pCallback->m_nGameID)
 	{
-		OutputDebugString("Stored Achievement for Steam\n");
 	}
 }
