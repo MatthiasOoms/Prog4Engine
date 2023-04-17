@@ -12,9 +12,6 @@ void dae::AchievementsObserverComponent::OnNotify(GameObject* obj, Event event)
 	case dae::Event::EnemyDeath:
 		break;
 	case dae::Event::ScoreChange:
-		break;
-	case dae::Event::ACH_WIN_ONE_GAME:
-
 		if (!obj->HasComponent<ScoreComponent>())
 		{
 			break;

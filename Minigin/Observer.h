@@ -9,8 +9,7 @@ namespace dae
 	{
 		PlayerDeath,
 		EnemyDeath,
-		ScoreChange,
-		ACH_WIN_ONE_GAME
+		ScoreChange
 	};
 
 	class Observer
