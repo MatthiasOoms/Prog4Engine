@@ -4,12 +4,12 @@
 
 dae::AchievementsObserverComponent::AchievementsObserverComponent(GameObject* pObj)
 	: Component{ pObj }
+	, m_HasAchWinOne{ false }
 {
 }
 
 void dae::AchievementsObserverComponent::OnNotify(GameObject* obj, Event event)
 {
-	int score{};
 	switch (event)
 	{
 	case dae::Event::PlayerDeath:
@@ -21,11 +21,14 @@ void dae::AchievementsObserverComponent::OnNotify(GameObject* obj, Event event)
 		{
 			break;
 		}
-
-		score = obj->GetComponent<ScoreComponent>()->GetScore();
-		if (score >= 500)
+		
+		if (obj->GetComponent<ScoreComponent>()->GetScore() >= 500)
 		{
-			UnlockAchievement("ACH_WIN_ONE_GAME");
+			if (!m_HasAchWinOne)
+			{
+				UnlockAchievement("ACH_WIN_ONE_GAME");
+				m_HasAchWinOne = true;
+			}
 		}
 		break;
 	default:

@@ -34,6 +34,8 @@ namespace dae
 		void Execute(float elapsedSec) override;
 	};
 
+
+	// TODO: Make this work with Events, don't understand
 	class KillCommand final : public Command
 	{
 	private:

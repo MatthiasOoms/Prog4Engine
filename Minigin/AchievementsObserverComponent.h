@@ -27,5 +27,7 @@ namespace dae
 
 	private:
 		void UnlockAchievement(const char* id);
+
+		bool m_HasAchWinOne;
 	};
 }
