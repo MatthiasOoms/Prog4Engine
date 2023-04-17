@@ -18,7 +18,7 @@ dae::LivesComponent::~LivesComponent()
 
 void dae::LivesComponent::AddObserver(Observer* pObserver)
 {
-	m_pSubject->addObserver(pObserver);
+	m_pSubject->AddObserver(pObserver);
 }
 
 int dae::LivesComponent::GetLives() const

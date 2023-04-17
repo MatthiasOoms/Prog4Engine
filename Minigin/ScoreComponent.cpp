@@ -30,7 +30,7 @@ void dae::ScoreComponent::SetScore(int score)
 
 void dae::ScoreComponent::AddObserver(Observer* pObserver)
 {
-	m_pSubject->addObserver(pObserver);
+	m_pSubject->AddObserver(pObserver);
 }
 
 int dae::ScoreComponent::GetScore() const

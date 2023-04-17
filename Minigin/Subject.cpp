@@ -19,12 +19,12 @@ void dae::Subject::OnNotify(GameObject* obj, Event event)
     }
 }
 
-void dae::Subject::addObserver(Observer* pObserver)
+void dae::Subject::AddObserver(Observer* pObserver)
 {
 	m_pObservers.push_back(pObserver);
 }
 
-void dae::Subject::removeObserver(Observer* pObserver)
+void dae::Subject::RemoveObserver(Observer* pObserver)
 {
 	m_pObservers.erase(std::find(m_pObservers.begin(), m_pObservers.end(), pObserver));
 }
