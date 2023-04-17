@@ -1,15 +1,15 @@
 #include "SteamAchievements.h"
 
-dae::SteamAchievements::SteamAchievements(Achievement_t* Achievements, int NumAchievements) :
-    m_iAppID(0),
-    m_bInitialized(false),
+dae::SteamAchievements::SteamAchievements(Achievement_t* achievements, int numAchievements) :
+    m_AppID(0),
+    m_IsInitialized(false),
     m_CallbackUserStatsReceived(this, &SteamAchievements::OnUserStatsReceived),
     m_CallbackUserStatsStored(this, &SteamAchievements::OnUserStatsStored),
     m_CallbackAchievementStored(this, &SteamAchievements::OnAchievementStored)
 {
-    m_iAppID = SteamUtils()->GetAppID();
-    m_pAchievements = Achievements;
-    m_iNumAchievements = NumAchievements;
+    m_AppID = SteamUtils()->GetAppID();
+    m_pAchievements = achievements;
+    m_NumAchievements = numAchievements;
     RequestStats();
 }
 
@@ -36,7 +36,7 @@ bool dae::SteamAchievements::RequestStats()
 bool dae::SteamAchievements::SetAchievement(const char* ID)
 {
 	// Have we received a call back from Steam yet?
-	if (m_bInitialized)
+	if (m_IsInitialized)
 	{
 		SteamUserStats()->SetAchievement(ID);
 		return SteamUserStats()->StoreStats();
@@ -48,23 +48,23 @@ bool dae::SteamAchievements::SetAchievement(const char* ID)
 void dae::SteamAchievements::OnUserStatsReceived(UserStatsReceived_t* pCallback)
 {
 	// we may get callbacks for other games' stats arriving, ignore them
-	if (m_iAppID == pCallback->m_nGameID)
+	if (m_AppID == pCallback->m_nGameID)
 	{
 		if (k_EResultOK == pCallback->m_eResult)
 		{
-			m_bInitialized = true;
+			m_IsInitialized = true;
 
 			// load achievements
-			for (int iAch = 0; iAch < m_iNumAchievements; ++iAch)
+			for (int iAch = 0; iAch < m_NumAchievements; ++iAch)
 			{
 				Achievement_t& ach = m_pAchievements[iAch];
 
-				SteamUserStats()->GetAchievement(ach.m_pchAchievementID, &ach.m_bAchieved);
-				_snprintf(ach.m_rgchName, sizeof(ach.m_rgchName), "%s",
-					SteamUserStats()->GetAchievementDisplayAttribute(ach.m_pchAchievementID,
+				SteamUserStats()->GetAchievement(ach.m_pAchievementID, &ach.m_IsAchieved);
+				_snprintf(ach.m_AchievementName, sizeof(ach.m_AchievementName), "%s",
+					SteamUserStats()->GetAchievementDisplayAttribute(ach.m_pAchievementID,
 						"name"));
-				_snprintf(ach.m_rgchDescription, sizeof(ach.m_rgchDescription), "%s",
-					SteamUserStats()->GetAchievementDisplayAttribute(ach.m_pchAchievementID,
+				_snprintf(ach.m_AchievementDescription, sizeof(ach.m_AchievementDescription), "%s",
+					SteamUserStats()->GetAchievementDisplayAttribute(ach.m_pAchievementID,
 						"desc"));
 			}
 		}
@@ -79,7 +79,7 @@ void dae::SteamAchievements::OnUserStatsReceived(UserStatsReceived_t* pCallback)
 void dae::SteamAchievements::OnUserStatsStored(UserStatsStored_t* pCallback)
 {
 	// we may get callbacks for other games' stats arriving, ignore them
-	if (m_iAppID == pCallback->m_nGameID)
+	if (m_AppID == pCallback->m_nGameID)
 	{
 		if (k_EResultOK == pCallback->m_eResult)
 		{
@@ -95,7 +95,7 @@ void dae::SteamAchievements::OnUserStatsStored(UserStatsStored_t* pCallback)
 void dae::SteamAchievements::OnAchievementStored(UserAchievementStored_t * pCallback)
 {
 	// we may get callbacks for other games' stats arriving, ignore them
-	if (m_iAppID == pCallback->m_nGameID)
+	if (m_AppID == pCallback->m_nGameID)
 	{
 	}
 }

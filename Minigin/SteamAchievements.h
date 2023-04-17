@@ -11,24 +11,24 @@ namespace dae
 #define _ACH_ID( id, name ) { id, #id, name, "", 0, 0 }
 	struct Achievement_t
 	{
-		int m_eAchievementID;
-		const char* m_pchAchievementID;
-		char m_rgchName[128];
-		char m_rgchDescription[256];
-		bool m_bAchieved;
-		int m_iIconImage;
+		int m_AchievementID;
+		const char* m_pAchievementID;
+		char m_AchievementName[128];
+		char m_AchievementDescription[256];
+		bool m_IsAchieved;
+		int m_IconImageInt;
 	};
 
-	class SteamAchievements
+	class SteamAchievements final
 	{
 	private:
-		uint64 m_iAppID; // Our current AppID
+		uint64 m_AppID; // Our current AppID
 		Achievement_t* m_pAchievements; // Achievements data
-		int m_iNumAchievements; // The number of Achievements
-		bool m_bInitialized; // Have we called Request stats and received the callback?
+		int m_NumAchievements; // The number of Achievements
+		bool m_IsInitialized; // Have we called Request stats and received the callback?
 
 	public:
-		SteamAchievements(Achievement_t* Achievements, int NumAchievements);
+		SteamAchievements(Achievement_t* achievements, int numAchievements);
 		~SteamAchievements();
 
 		bool RequestStats();
