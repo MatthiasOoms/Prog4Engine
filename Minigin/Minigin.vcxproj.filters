@@ -120,6 +120,9 @@
     <ClInclude Include="SteamAchievements.h">
       <Filter>Engine Files\Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="AchievementsObserverComponent.h">
+      <Filter>Engine Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -196,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="SteamAchievements.cpp">
       <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="AchievementsObserverComponent.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -24,6 +24,7 @@ void dae::ScoreObserverComponent::OnNotify(GameObject* obj, Event event)
 		UpdateText(obj);
 		break;
 	case dae::Event::ACH_WIN_ONE_GAME:
+		
 		break;
 	default:
 		break;
