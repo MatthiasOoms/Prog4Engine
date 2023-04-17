@@ -2,6 +2,11 @@
 #include "GameObject.h"
 #include "ScoreComponent.h"
 
+dae::AchievementsObserverComponent::AchievementsObserverComponent(GameObject* pObj)
+	: Component{ pObj }
+{
+}
+
 void dae::AchievementsObserverComponent::OnNotify(GameObject* obj, Event event)
 {
 	int score{};

@@ -17,6 +17,12 @@ namespace dae
 	class AchievementsObserverComponent final : public Component, public Observer
 	{
 	public:
+		virtual void Update(float) override {};
+		virtual void Render(float) const override {};
+
+		AchievementsObserverComponent(GameObject* pObj);
+		virtual ~AchievementsObserverComponent() = default;
+
 		virtual void OnNotify(GameObject* obj, Event event) override;
 
 	private:

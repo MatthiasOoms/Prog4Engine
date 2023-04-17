@@ -15,8 +15,6 @@ dae::SteamAchievements::SteamAchievements(Achievement_t* Achievements, int NumAc
 
 dae::SteamAchievements::~SteamAchievements()
 {
-	delete m_pAchievements;
-	m_pAchievements = nullptr;
 }
 
 bool dae::SteamAchievements::RequestStats()
