@@ -1,5 +1,3 @@
-#include "pch.h"
-
 #include <SDL.h>
 
 // These things make sure the sign mismatch error isn't thrown in matchmakingtypes.h
