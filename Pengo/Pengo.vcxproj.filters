@@ -18,36 +18,48 @@
     <ClCompile Include="Pengo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Minigin\FPSComponent.cpp">
+    <ClCompile Include="FPSComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Minigin\LivesComponent.cpp">
+    <ClCompile Include="LivesComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Minigin\LivesObserverComponent.cpp">
+    <ClCompile Include="LivesObserverComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Minigin\ScoreComponent.cpp">
+    <ClCompile Include="ScoreComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Minigin\ScoreObserverComponent.cpp">
+    <ClCompile Include="ScoreObserverComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KillCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Minigin\FPSComponent.h">
+    <ClInclude Include="FPSComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Minigin\LivesComponent.h">
+    <ClInclude Include="LivesComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Minigin\LivesObserverComponent.h">
+    <ClInclude Include="LivesObserverComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Minigin\ScoreComponent.h">
+    <ClInclude Include="ScoreComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Minigin\ScoreObserverComponent.h">
+    <ClInclude Include="ScoreObserverComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KillCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

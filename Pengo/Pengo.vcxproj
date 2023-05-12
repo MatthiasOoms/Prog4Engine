@@ -197,19 +197,23 @@ xcopy "$SolutionDir)/3rdParty/SDL2_ttf/lib/$(PlatformTarget)/*.dll" "$(OutputPat
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Minigin\FPSComponent.cpp" />
-    <ClCompile Include="..\Minigin\LivesComponent.cpp" />
-    <ClCompile Include="..\Minigin\LivesObserverComponent.cpp" />
-    <ClCompile Include="..\Minigin\ScoreComponent.cpp" />
-    <ClCompile Include="..\Minigin\ScoreObserverComponent.cpp" />
+    <ClCompile Include="FPSComponent.cpp" />
+    <ClCompile Include="KillCommand.cpp" />
+    <ClCompile Include="LivesComponent.cpp" />
+    <ClCompile Include="LivesObserverComponent.cpp" />
     <ClCompile Include="Pengo.cpp" />
+    <ClCompile Include="ScoreCommand.cpp" />
+    <ClCompile Include="ScoreComponent.cpp" />
+    <ClCompile Include="ScoreObserverComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Minigin\FPSComponent.h" />
-    <ClInclude Include="..\Minigin\LivesComponent.h" />
-    <ClInclude Include="..\Minigin\LivesObserverComponent.h" />
-    <ClInclude Include="..\Minigin\ScoreComponent.h" />
-    <ClInclude Include="..\Minigin\ScoreObserverComponent.h" />
+    <ClInclude Include="FPSComponent.h" />
+    <ClInclude Include="KillCommand.h" />
+    <ClInclude Include="LivesComponent.h" />
+    <ClInclude Include="LivesObserverComponent.h" />
+    <ClInclude Include="ScoreCommand.h" />
+    <ClInclude Include="ScoreComponent.h" />
+    <ClInclude Include="ScoreObserverComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

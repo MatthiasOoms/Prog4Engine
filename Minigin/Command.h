@@ -33,31 +33,5 @@ namespace dae
 		virtual ~MoveCommand() = default;
 		void Execute(float elapsedSec) override;
 	};
-
-
-	// TODO: Make this work with Events, don't understand
-	class KillCommand final : public Command
-	{
-	private:
-		GameObject* m_pGameObject;
-	protected:
-		GameObject* GetGameObject() { return m_pGameObject; }
-	public:
-		KillCommand(GameObject* pGameObject);
-		virtual ~KillCommand() = default;
-		void Execute(float elapsedSec) override;
-	};
-
-	class ScoreCommand final : public Command
-	{
-	private:
-		GameObject* m_pGameObject;
-	protected:
-		GameObject* GetGameObject() { return m_pGameObject; }
-	public:
-		ScoreCommand(GameObject* pGameObject);
-		virtual ~ScoreCommand() = default;
-		void Execute(float elapsedSec) override;
-	};
 }
 
