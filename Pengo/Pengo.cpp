@@ -34,6 +34,8 @@
 #include "Controller.h"
 #include "Command.h"
 #include <iostream>
+#include "KillCommand.h"
+#include "ScoreCommand.h"
 
 void load()
 {
