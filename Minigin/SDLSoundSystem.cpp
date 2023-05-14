@@ -16,3 +16,7 @@ void SDLSoundSystem::Resume()
 void SDLSoundSystem::Stop()
 {
 }
+
+void dae::SDLSoundSystem::Load(std::string filePath)
+{
+}

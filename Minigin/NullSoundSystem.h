@@ -1,11 +1,16 @@
 #pragma once
 #include "SoundSystem.h"
+#include <string>
 
-class NullSoundSystem final : public SoundSystem
+namespace dae
 {
-	void Play(const sound_id, const float) override {}
-	virtual void Pause() override {};
-	virtual void Resume() override {};
-	virtual void Stop() override {};
-};
+	class NullSoundSystem final : public SoundSystem
+	{
+		void Play(const sound_id, const float) override {}
+		void Pause() override {};
+		void Resume() override {};
+		void Stop() override {};
+		void Load(std::string filePath) override {};
+	};
+}
 
