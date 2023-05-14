@@ -36,9 +36,20 @@
 #include <iostream>
 #include "KillCommand.h"
 #include "ScoreCommand.h"
+#include <SoundServiceLocator.h>
+#include <SDLSoundSystem.h>
+#include <LoggingSoundSystem.h>
 
 void load()
 {
+#if _DEBUG
+	SoundServiceLocator::RegisterSoundSystem(
+		std::make_unique<LoggingSoundSystem>(std::make_unique<SDLSoundSystem>())
+	);
+#else
+	SoundServiceLocator::RegisterSoundSystem(std::make_unique<SDLSoundSystem>());
+#endif
+	auto& soundSystem = SoundServiceLocator::GetSoundSystem();
 	auto& resourceManager = dae::ResourceManager::GetInstance();
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 	auto& input = dae::InputManager::GetInstance();

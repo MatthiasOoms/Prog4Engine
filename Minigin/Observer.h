@@ -9,7 +9,14 @@ namespace dae
 	{
 		PlayerDeath,
 		EnemyDeath,
-		ScoreChange
+		ScoreChange,
+		PlaySound,
+		PauseSound,
+		ResumeSound,
+		StopSound,
+		ChangeVolume,
+		MuteSound,
+		UnmuteSound
 	};
 
 	class Observer
