@@ -1,12 +1,12 @@
 #include "SoundServiceLocator.h"
 #include "NullSoundSystem.h"
 
-SoundSystem& SoundServiceLocator::GetSoundSystem()
+dae::SoundSystem& dae::SoundServiceLocator::GetSoundSystem()
 {
 	return *m_Instance;
 }
 
-void SoundServiceLocator::RegisterSoundSystem(std::unique_ptr<SoundSystem>&& ss)
+void dae::SoundServiceLocator::RegisterSoundSystem(std::unique_ptr<SoundSystem>&& ss)
 {
 	if (ss == nullptr)
 	{

@@ -29,13 +29,13 @@
 #include "LivesObserverComponent.h"
 #include "ScoreObserverComponent.h"
 
-
 #include "InputManager.h"
 #include "Controller.h"
 #include "Command.h"
 #include <iostream>
 #include "KillCommand.h"
 #include "ScoreCommand.h"
+
 #include <SoundServiceLocator.h>
 #include <SDLSoundSystem.h>
 #include <LoggingSoundSystem.h>
@@ -53,6 +53,8 @@ void load()
 	auto& resourceManager = dae::ResourceManager::GetInstance();
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 	auto& input = dae::InputManager::GetInstance();
+
+	soundSystem;
 
 	// Images
 	// Background

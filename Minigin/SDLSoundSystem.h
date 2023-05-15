@@ -8,6 +8,7 @@ namespace dae
 		class SDLSoundSystemImpl;
 		SDLSoundSystemImpl* pImpl;
 	public:
+		bool initSDL_Mixer();
 		void Play(const sound_id id, const float volume) override;
 		void Pause() override;
 		void Resume() override;

@@ -102,20 +102,20 @@
     <ClInclude Include="Subject.h">
       <Filter>Engine Files\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="SoundSystem.h">
-      <Filter>Engine Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundServiceLocator.h">
-      <Filter>Engine Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SDLSoundSystem.h">
-      <Filter>Engine Files</Filter>
-    </ClInclude>
     <ClInclude Include="LoggingSoundSystem.h">
-      <Filter>Engine Files</Filter>
+      <Filter>Engine Files\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="NullSoundSystem.h">
-      <Filter>Engine Files</Filter>
+      <Filter>Engine Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLSoundSystem.h">
+      <Filter>Engine Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundServiceLocator.h">
+      <Filter>Engine Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundSystem.h">
+      <Filter>Engine Files\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -173,20 +173,20 @@
     <ClCompile Include="Subject.cpp">
       <Filter>Source Files\Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="SoundSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundServiceLocator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SDLSoundSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="LoggingSoundSystem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="NullSoundSystem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLSoundSystem.cpp">
+      <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundServiceLocator.cpp">
+      <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundSystem.cpp">
+      <Filter>Source Files\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
