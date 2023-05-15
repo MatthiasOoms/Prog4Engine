@@ -222,7 +222,6 @@ void load()
 	toScore->AddComponent<dae::TextComponent>()->SetFont(font);
 	toScore->GetComponent<dae::TextComponent>()->SetText("C/V: Score Up");
 	scene.Add(toScore);
-
 }
 
 int main(int, char* [])

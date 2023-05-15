@@ -67,13 +67,20 @@ public:
 				std::lock_guard<std::mutex> lock(m_SoundEffectsMutex);
 				m_pSoundEffects.push_back(soundEffect);
 
-				Mix_FreeChunk(soundEffect);
+				// TODO: Implement RAII like in the 2D Texture
+				// Freeing the chunk removes from memory, using deleted sound
+				//Mix_FreeChunk(soundEffect);
 			}
 		);
 	}
 
 	void Cleanup()
 	{
+		for (auto sound : m_pSoundEffects)
+		{
+			Mix_FreeChunk(sound);
+		}
+
 		Mix_CloseAudio();
 		Mix_Quit();
 		SDL_Quit();
@@ -82,11 +89,6 @@ public:
 
 dae::SDLSoundSystem::SDLSoundSystem()
 {
-	if (SDL_Init(SDL_INIT_AUDIO) < 0)
-	{
-		std::cout << "SDL initialization failed: " << SDL_GetError() << std::endl;
-	}
-
 	if (Mix_Init(SDL_INIT_AUDIO) < 0)
 	{
 		std::cout << "SDL_mixer initialization failed: " << SDL_GetError() << std::endl;
