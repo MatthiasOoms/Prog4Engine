@@ -14,6 +14,6 @@ void dae::SoundServiceLocator::RegisterSoundSystem(std::unique_ptr<SoundSystem>&
 	}
 	else
 	{
-		std::move(ss);
+		m_Instance = std::move(ss);
 	}
 }

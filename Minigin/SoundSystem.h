@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+
 namespace dae
 {
 	using sound_id = unsigned short;
