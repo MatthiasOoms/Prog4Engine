@@ -39,6 +39,7 @@
 #include <SoundServiceLocator.h>
 #include <SDLSoundSystem.h>
 #include <LoggingSoundSystem.h>
+#include <SDL_mixer.h>
 
 void load()
 {
@@ -49,13 +50,28 @@ void load()
 #else
 	dae::SoundServiceLocator::RegisterSoundSystem(std::make_unique<dae::SDLSoundSystem>());
 #endif
+	if (SDL_Init(SDL_INIT_AUDIO) < 0)
+	{
+		std::cout << "SDL initialization failed: " << SDL_GetError() << std::endl;
+	}
+
+	if (Mix_Init(SDL_INIT_AUDIO) < 0)
+	{
+		std::cout << "SDL initialization failed: " << SDL_GetError() << std::endl;
+	}
+
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+	{
+		std::cout << "SDL_mixer initialization failed: " << Mix_GetError() << std::endl;
+	}
+
 	auto& soundSystem = dae::SoundServiceLocator::GetSoundSystem();
 	auto& resourceManager = dae::ResourceManager::GetInstance();
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 	auto& input = dae::InputManager::GetInstance();
 
-	soundSystem.Load("test.mp3");
-	soundSystem.Play(0, 10);
+	soundSystem.Load("../Data/Missile.wav");
+	//soundSystem.Play(0, 10);
 
 	// Images
 	// Background

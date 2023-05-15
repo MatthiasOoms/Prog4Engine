@@ -10,21 +10,8 @@
 class dae::SDLSoundSystem::SDLSoundSystemImpl
 {
 	std::vector<Mix_Chunk*> m_pSoundEffects;
-	std::mutex m_SoundEffectsMutex;
+	std::mutex m_SoundEffectsMutex{};
 public:
-	SDLSoundSystem::SDLSoundSystemImpl()
-	{
-		if (SDL_Init(SDL_INIT_AUDIO) < 0)
-		{
-			std::cout << "SDL initialization failed: " << SDL_GetError() << std::endl;
-		}
-
-		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
-		{
-			std::cout << "SDL_mixer initialization failed: " << Mix_GetError() << std::endl;
-		}
-	}
-
 	void Play(const sound_id id, const float volume)
 	{
 		if (id >= m_pSoundEffects.size()) 
