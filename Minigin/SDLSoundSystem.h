@@ -13,5 +13,6 @@ namespace dae
 		void Resume() override;
 		void Stop() override;
 		void Load(std::string filePath) override;
+		~SDLSoundSystem() override;
 	};
 }

@@ -110,9 +110,10 @@
       <AdditionalDependencies>Minigin.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$SolutionDir)/3rdParty/SDL2/lib/$(PlatformTarget)/SDL2.dll" "$(OutputPath)" /R /Y
-xcopy "$SolutionDir)/3rdParty/SDL2_images/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
-xcopy "$SolutionDir)/3rdParty/SDL2_ttf/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
+      <Command>xcopy "$(SolutionDir)/3rdParty/SDL2/lib/$(PlatformTarget)/SDL2.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)/3rdParty/SDL2_images/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)/3rdParty/SDL2_ttf/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)/3rdParty/SDL2_mixer/lib/$(PlatformTarget)/SDL2_mixer.dll" "$(OutputPath)" /R /Y
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -138,9 +139,10 @@ xcopy "$SolutionDir)/3rdParty/SDL2_ttf/lib/$(PlatformTarget)/*.dll" "$(OutputPat
       <AdditionalDependencies>Minigin.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$SolutionDir)/3rdParty/SDL2/lib/$(PlatformTarget)/SDL2.dll" "$(OutputPath)" /R /Y
-xcopy "$SolutionDir)/3rdParty/SDL2_images/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
-xcopy "$SolutionDir)/3rdParty/SDL2_ttf/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
+      <Command>xcopy "$(SolutionDir)/3rdParty/SDL2/lib/$(PlatformTarget)/SDL2.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)/3rdParty/SDL2_images/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)/3rdParty/SDL2_ttf/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)/3rdParty/SDL2_mixer/lib/$(PlatformTarget)/SDL2_mixer.dll" "$(OutputPath)" /R /Y
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -162,9 +164,10 @@ xcopy "$SolutionDir)/3rdParty/SDL2_ttf/lib/$(PlatformTarget)/*.dll" "$(OutputPat
       <AdditionalDependencies>Minigin.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$SolutionDir)/3rdParty/SDL2/lib/$(PlatformTarget)/SDL2.dll" "$(OutputPath)" /R /Y
-xcopy "$SolutionDir)/3rdParty/SDL2_images/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
-xcopy "$SolutionDir)/3rdParty/SDL2_ttf/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
+      <Command>xcopy "$(SolutionDir)/3rdParty/SDL2/lib/$(PlatformTarget)/SDL2.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)/3rdParty/SDL2_images/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)/3rdParty/SDL2_ttf/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)/3rdParty/SDL2_mixer/lib/$(PlatformTarget)/SDL2_mixer.dll" "$(OutputPath)" /R /Y
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -190,9 +193,10 @@ xcopy "$SolutionDir)/3rdParty/SDL2_ttf/lib/$(PlatformTarget)/*.dll" "$(OutputPat
       <AdditionalDependencies>Minigin.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$SolutionDir)/3rdParty/SDL2/lib/$(PlatformTarget)/SDL2.dll" "$(OutputPath)" /R /Y
-xcopy "$SolutionDir)/3rdParty/SDL2_images/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
-xcopy "$SolutionDir)/3rdParty/SDL2_ttf/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
+      <Command>xcopy "$(SolutionDir)/3rdParty/SDL2/lib/$(PlatformTarget)/SDL2.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)/3rdParty/SDL2_images/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)/3rdParty/SDL2_ttf/lib/$(PlatformTarget)/*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)/3rdParty/SDL2_mixer/lib/$(PlatformTarget)/SDL2_mixer.dll" "$(OutputPath)" /R /Y
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
