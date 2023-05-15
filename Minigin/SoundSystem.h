@@ -13,6 +13,6 @@ namespace dae
 		virtual void Pause() = 0;
 		virtual void Resume() = 0;
 		virtual void Stop() = 0;
-		virtual void Load(std::string filePath) = 0;
+		virtual void Load(const std::string& filePath) = 0;
 	};
 }

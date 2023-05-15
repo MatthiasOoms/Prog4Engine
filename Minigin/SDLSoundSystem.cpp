@@ -4,6 +4,9 @@
 #include <thread>
 #include <mutex>
 
+#include <SDL.h>
+#include <SDL_mixer.h> 
+
 class dae::SDLSoundSystem::SDLSoundSystemImpl
 {
 	std::vector<Mix_Chunk*> m_pSoundEffects;
@@ -63,7 +66,7 @@ public:
 		Mix_HaltChannel(-1);
 	}
 
-	void Load(std::string filePath)
+	void Load(const std::string& filePath)
 	{
 		std::jthread soundLoaderThread([this, filePath]()
 			{
@@ -109,7 +112,7 @@ void dae::SDLSoundSystem::Stop()
 	pImpl->Stop();
 }
 
-void dae::SDLSoundSystem::Load(std::string filePath)
+void dae::SDLSoundSystem::Load(const std::string& filePath)
 {
 	pImpl->Load(filePath);
 }

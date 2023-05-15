@@ -2,9 +2,6 @@
 #include "SoundSystem.h"
 #include <string>
 
-#include <SDL.h>
-#include <SDL_mixer.h> 
-
 namespace dae
 {
 	class SDLSoundSystem final : public SoundSystem
@@ -16,7 +13,7 @@ namespace dae
 		void Pause() override;
 		void Resume() override;
 		void Stop() override;
-		void Load(std::string filePath) override;
+		void Load(const std::string& filePath) override;
 		~SDLSoundSystem() override;
 	};
 }

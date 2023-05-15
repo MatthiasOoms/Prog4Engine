@@ -19,6 +19,6 @@ namespace dae
 		void Pause() override { _real_ss->Pause(); };
 		void Resume() override { _real_ss->Resume(); };
 		void Stop() override { _real_ss->Stop(); };
-		void Load(std::string filePath) override { _real_ss->Load(filePath); };
+		void Load(const std::string& filePath) override { _real_ss->Load(filePath); };
 	};
 }

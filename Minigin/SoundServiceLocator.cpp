@@ -3,17 +3,17 @@
 
 dae::SoundSystem& dae::SoundServiceLocator::GetSoundSystem()
 {
-	return *m_Instance;
+	return *m_pInstance;
 }
 
 void dae::SoundServiceLocator::RegisterSoundSystem(std::unique_ptr<SoundSystem>&& ss)
 {
 	if (ss == nullptr)
 	{
-		m_Instance = std::make_unique<NullSoundSystem>();
+		m_pInstance = std::make_unique<NullSoundSystem>();
 	}
 	else
 	{
-		m_Instance = std::move(ss);
+		m_pInstance = std::move(ss);
 	}
 }
