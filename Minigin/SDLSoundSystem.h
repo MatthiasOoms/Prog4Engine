@@ -1,6 +1,10 @@
 #pragma once
 #include "SoundSystem.h"
 #include <string>
+
+#include <SDL.h>
+#include <SDL_mixer.h> 
+
 namespace dae
 {
 	class SDLSoundSystem final : public SoundSystem

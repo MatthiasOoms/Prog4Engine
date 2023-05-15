@@ -54,7 +54,8 @@ void load()
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 	auto& input = dae::InputManager::GetInstance();
 
-	soundSystem;
+	soundSystem.Load("test.mp3");
+	soundSystem.Play(0, 10);
 
 	// Images
 	// Background
