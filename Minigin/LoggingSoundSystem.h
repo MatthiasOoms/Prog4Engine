@@ -11,14 +11,10 @@ namespace dae
 	public:
 		LoggingSoundSystem(std::unique_ptr<SoundSystem>&& ss) { _real_ss = (std::move(ss)); }
 		virtual ~LoggingSoundSystem() = default;
-		void Play(const sound_id id, const float volume) override
-		{
-			_real_ss->Play(id, volume);
-			std::cout << "playing " << id << " at volume " << volume << std::endl;
-		}
+		void Play(const sound_id id, const float volume) override;
 		void Pause() override { _real_ss->Pause(); };
 		void Resume() override { _real_ss->Resume(); };
 		void Stop() override { _real_ss->Stop(); };
-		void Load(const std::string& filePath) override { _real_ss->Load(filePath); };
+		void Load(const std::string& filePath) override;
 	};
 }
