@@ -6,6 +6,7 @@ namespace dae
 
 	class SoundServiceLocator final
 	{
+	private:
 		static std::unique_ptr<SoundSystem> m_pInstance;
 	public:
 		static SoundSystem& GetSoundSystem();
