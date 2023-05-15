@@ -16,7 +16,7 @@ public:
 	{
 		if (id >= m_pSoundEffects.size()) 
 		{
-			std::cerr << "Invalid sound ID: " << id << std::endl;
+			std::cerr << "Sound ID out of range: " << id << std::endl;
 			return;
 		}
 
@@ -68,7 +68,8 @@ public:
 				m_pSoundEffects.push_back(soundEffect);
 
 				Mix_FreeChunk(soundEffect);
-			});
+			}
+		);
 	}
 
 	void Cleanup()
@@ -78,6 +79,26 @@ public:
 		SDL_Quit();
 	}
 };
+
+dae::SDLSoundSystem::SDLSoundSystem()
+{
+	if (SDL_Init(SDL_INIT_AUDIO) < 0)
+	{
+		std::cout << "SDL initialization failed: " << SDL_GetError() << std::endl;
+	}
+
+	if (Mix_Init(SDL_INIT_AUDIO) < 0)
+	{
+		std::cout << "SDL_mixer initialization failed: " << SDL_GetError() << std::endl;
+	}
+
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+	{
+		std::cout << "SDL_mixer OpenAudio failed: " << Mix_GetError() << std::endl;
+	}
+
+	pImpl = new SDLSoundSystemImpl{};
+}
 
 void dae::SDLSoundSystem::Play(const sound_id id, const float volume)
 {

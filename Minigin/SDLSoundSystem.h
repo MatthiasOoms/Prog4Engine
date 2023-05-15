@@ -9,6 +9,7 @@ namespace dae
 		class SDLSoundSystemImpl;
 		SDLSoundSystemImpl* pImpl;
 	public:
+		SDLSoundSystem();
 		void Play(const sound_id id, const float volume) override;
 		void Pause() override;
 		void Resume() override;
