@@ -33,6 +33,7 @@ namespace dae
 		};
 
 		void Update();
+		int GetIdx() const;
 
 		bool IsDown(ControllerButton button) const;
 		bool IsUp(ControllerButton button) const;

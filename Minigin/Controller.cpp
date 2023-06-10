@@ -37,6 +37,11 @@ namespace dae
 			m_ButtonsReleasedThisFrame = buttonChanges & (~m_CurrentState.Gamepad.wButtons);
 		}
 
+		int GetIdx()
+		{
+			return m_ControllerIdx;
+		}
+
 		bool IsDownThisFrame(unsigned int button) const { return m_ButtonsPressedThisFrame & button; };
 		bool IsUpThisFrame(unsigned int button) const { return m_ButtonsReleasedThisFrame & button; };
 		bool IsPressed(unsigned int button) const { return m_CurrentState.Gamepad.wButtons & button; };
@@ -56,6 +61,11 @@ namespace dae
 	void Controller::Update()
 	{
 		pImpl->Update();
+	}
+
+	int Controller::GetIdx() const
+	{
+		return pImpl->GetIdx();
 	}
 
 	bool Controller::IsDown(ControllerButton button) const

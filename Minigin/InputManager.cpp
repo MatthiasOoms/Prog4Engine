@@ -93,9 +93,11 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 		controller->Update();
 		for (auto const& command : m_ConsoleCommands)
 		{
-			switch (command.first.second)
+			if (command.first.first.first == controller->GetIdx())
 			{
-				case keyState::isDown:
+				switch (command.first.second)
+				{
+					case keyState::isDown:
 					{
 						if (controller->IsDown(command.first.first.second))
 						{
@@ -103,7 +105,7 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 						}
 						break;
 					}
-				case keyState::isPressed:
+					case keyState::isPressed:
 					{
 						if (controller->IsPressed(command.first.first.second))
 						{
@@ -111,7 +113,7 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 						}
 						break;
 					}
-				case keyState::isUp:
+					case keyState::isUp:
 					{
 						if (controller->IsUp(command.first.first.second))
 						{
@@ -119,6 +121,7 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 						}
 						break;
 					}
+				}
 			}
 		}
 	}
