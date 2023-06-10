@@ -82,7 +82,7 @@ void load()
 	goPengo->AddComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("pengo.png"));
 	goPengo->GetTransform().SetLocalPosition(50, 0, 0);
 
-	goPengo->AddComponent<dae::LivesComponent>()->SetLives(3);
+	goPengo->AddComponent<dae::LivesComponent>()->SetValue(3);
 	goPengo->AddComponent<dae::ScoreComponent>();
 
 	scene.Add(goPengo);
@@ -92,7 +92,7 @@ void load()
 	goSnoBee->AddComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("snobee.png"));
 	goSnoBee->GetTransform().SetLocalPosition(20, 0, 0);
 
-	goSnoBee->AddComponent<dae::LivesComponent>()->SetLives(3);
+	goSnoBee->AddComponent<dae::LivesComponent>()->SetValue(3);
 	goSnoBee->AddComponent<dae::ScoreComponent>();
 
 	scene.Add(goSnoBee);
@@ -184,12 +184,12 @@ void load()
 
 	// Events
 	// Death
-	goPengo->GetComponent<dae::LivesComponent>()->LowerLives(2);
-	goSnoBee->GetComponent<dae::LivesComponent>()->LowerLives();
+	goPengo->GetComponent<dae::LivesComponent>()->Increase(-2);
+	goSnoBee->GetComponent<dae::LivesComponent>()->Increase();
 
 	// Score
-	goPengo->GetComponent<dae::ScoreComponent>()->IncreaseScore(100);
-	goSnoBee->GetComponent<dae::ScoreComponent>()->SetScore(50);
+	goPengo->GetComponent<dae::ScoreComponent>()->Increase(100);
+	goSnoBee->GetComponent<dae::ScoreComponent>()->SetValue(50);
 
 
 

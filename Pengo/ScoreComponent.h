@@ -1,15 +1,14 @@
 #pragma once
-#include "Component.h"
+#include "CounterComponent.h"
 namespace dae
 {
 	class Subject;
 	class Observer;
 
-	class ScoreComponent final : public Component
+	class ScoreComponent final : public CounterComponent
 	{
 	public:
 		ScoreComponent(GameObject* pOwner);
-		~ScoreComponent();
 
 		ScoreComponent(const ScoreComponent& other) = delete;
 		ScoreComponent(ScoreComponent&& other) = delete;
@@ -19,15 +18,9 @@ namespace dae
 		virtual void Update(float) override {};
 		virtual void Render(float) const override {};
 
-		void IncreaseScore(int amount);
-		void SetScore(int score);
-		void AddObserver(Observer* pObserver);
-		int GetScore() const;
-
-	private:
-		int m_Score;
-
-		Subject* m_pSubject;
+		void Increase() override;
+		void Increase(int amount) override;
+		void SetValue(int value) override;
 	};
 }
 

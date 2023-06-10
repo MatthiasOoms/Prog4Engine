@@ -7,12 +7,6 @@ namespace dae
 
 	class Command
 	{
-				// TODO: Check feedback
-				// Not every Command runs on a GameObject, it shouldn't be necessary
-				// Could make a GameObjectCommand, could make Commands for certain Components
-				// Should also be a command that doesn't need a GameObject
-				//
-				// Made MoveCommand final, added virtual destructor
 	public:
 		explicit Command();
 		virtual ~Command();

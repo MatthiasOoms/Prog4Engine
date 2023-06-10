@@ -33,7 +33,7 @@ void dae::ScoreObserverComponent::UpdateText(GameObject* obj)
 	// Get score and put in text
 	if (obj->HasComponent<ScoreComponent>())
 	{
-		m_ScoreText = "Score: " + std::to_string(obj->GetComponent<ScoreComponent>()->GetScore());
+		m_ScoreText = "Score: " + std::to_string(obj->GetComponent<ScoreComponent>()->GetValue());
 	}
 
 	// Give text to TxtDisplay

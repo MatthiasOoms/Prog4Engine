@@ -33,13 +33,13 @@ namespace dae
 		};
 
 		void Update();
-		int GetIdx() const;
+		unsigned int GetIdx() const;
 
 		bool IsDown(ControllerButton button) const;
 		bool IsUp(ControllerButton button) const;
 		bool IsPressed(ControllerButton button) const;
 
-		explicit Controller(int controllerIdx);
+		explicit Controller(unsigned int controllerIdx);
 		~Controller();
 	};
 }

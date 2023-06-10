@@ -4,36 +4,27 @@
 #include "Subject.h"
 
 dae::ScoreComponent::ScoreComponent(GameObject* pOwner)
-	: Component{ pOwner }
+	: CounterComponent{ pOwner }
 {
 	m_pSubject = new Subject{};
-	SetScore(0);
+	SetValue(0);
 }
 
-dae::ScoreComponent::~ScoreComponent()
+void dae::ScoreComponent::Increase()
 {
-	delete m_pSubject;
-	m_pSubject = nullptr;
-}
-
-void dae::ScoreComponent::IncreaseScore(int amount)
-{
-	m_Score += amount;
+	++m_Value;
 	m_pSubject->OnNotify(m_pOwner, Event::ScoreChange);
 }
 
-void dae::ScoreComponent::SetScore(int score)
+void dae::ScoreComponent::Increase(int amount)
 {
-	m_Score = score;
+	m_Value += amount;
 	m_pSubject->OnNotify(m_pOwner, Event::ScoreChange);
 }
 
-void dae::ScoreComponent::AddObserver(Observer* pObserver)
+void dae::ScoreComponent::SetValue(int value)
 {
-	m_pSubject->AddObserver(pObserver);
+	m_Value = value;
+	m_pSubject->OnNotify(m_pOwner, Event::ScoreChange);
 }
 
-int dae::ScoreComponent::GetScore() const
-{
-	return m_Score;
-}

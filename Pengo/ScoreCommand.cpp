@@ -12,6 +12,6 @@ void dae::ScoreCommand::Execute(float)
 {
 	if (GetGameObject()->HasComponent<ScoreComponent>())
 	{
-		GetGameObject()->GetComponent<ScoreComponent>()->IncreaseScore(100);
+		GetGameObject()->GetComponent<ScoreComponent>()->Increase(100);
 	}
 }

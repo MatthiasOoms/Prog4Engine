@@ -12,6 +12,6 @@ void dae::KillCommand::Execute(float)
 {
 	if (GetGameObject()->HasComponent<LivesComponent>())
 	{
-		GetGameObject()->GetComponent<LivesComponent>()->LowerLives();
+		GetGameObject()->GetComponent<LivesComponent>()->Increase(-1);
 	}
 }

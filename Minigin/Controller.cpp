@@ -16,10 +16,10 @@ namespace dae
 		WORD m_ButtonsPressedThisFrame{};
 		WORD m_ButtonsReleasedThisFrame{};
 
-		int m_ControllerIdx;
+		unsigned int m_ControllerIdx;
 
 	public:
-		ControllerImpl(int controllerIdx)
+		ControllerImpl(unsigned int controllerIdx)
 			: m_ControllerIdx{ controllerIdx }
 		{
 			ZeroMemory(&m_PreviousState, sizeof(XINPUT_STATE));
@@ -37,7 +37,7 @@ namespace dae
 			m_ButtonsReleasedThisFrame = buttonChanges & (~m_CurrentState.Gamepad.wButtons);
 		}
 
-		int GetIdx()
+		unsigned int GetIdx()
 		{
 			return m_ControllerIdx;
 		}
@@ -47,7 +47,7 @@ namespace dae
 		bool IsPressed(unsigned int button) const { return m_CurrentState.Gamepad.wButtons & button; };
 	};
 
-	Controller::Controller(int controllerIdx)
+	Controller::Controller(unsigned int controllerIdx)
 	{
 		pImpl = new ControllerImpl{ controllerIdx };
 	}
@@ -63,7 +63,7 @@ namespace dae
 		pImpl->Update();
 	}
 
-	int Controller::GetIdx() const
+	unsigned int Controller::GetIdx() const
 	{
 		return pImpl->GetIdx();
 	}

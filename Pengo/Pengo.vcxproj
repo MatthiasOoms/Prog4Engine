@@ -209,6 +209,7 @@ xcopy "$(SolutionDir)\3rdParty\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" 
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CounterComponent.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="KillCommand.cpp" />
     <ClCompile Include="LivesComponent.cpp" />
@@ -219,6 +220,7 @@ xcopy "$(SolutionDir)\3rdParty\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" 
     <ClCompile Include="ScoreObserverComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CounterComponent.h" />
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="KillCommand.h" />
     <ClInclude Include="LivesComponent.h" />

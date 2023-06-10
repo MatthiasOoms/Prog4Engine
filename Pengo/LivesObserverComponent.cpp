@@ -48,8 +48,8 @@ void dae::LivesObserverComponent::UpdateText(GameObject* obj)
 	if (obj->HasComponent<LivesComponent>())
 	{
 		LivesComponent* pLivesComponent = obj->GetComponent<LivesComponent>();
-		m_ScoreText = std::to_string(pLivesComponent->GetLives());
-		if (pLivesComponent->GetLives() == 1)
+		m_ScoreText = std::to_string(pLivesComponent->GetValue());
+		if (pLivesComponent->GetValue() == 1)
 		{
 			m_ScoreText += " life";
 		}

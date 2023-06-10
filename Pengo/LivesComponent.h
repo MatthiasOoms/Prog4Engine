@@ -1,16 +1,15 @@
 #pragma once
-#include "Component.h"
+#include "CounterComponent.h"
 
 namespace dae
 {
 	class Subject;
 	class Observer;
 
-	class LivesComponent final : public Component
+	class LivesComponent final : public CounterComponent
 	{
 	public:
 		LivesComponent(GameObject* pOwner);
-		~LivesComponent();
 
 		LivesComponent(const LivesComponent& other) = delete;
 		LivesComponent(LivesComponent&& other) = delete;
@@ -20,16 +19,9 @@ namespace dae
 		virtual void Update(float) override {};
 		virtual void Render(float) const override {};
 
-		void LowerLives();
-		void LowerLives(int amount);
-		void SetLives(int health);
-		void AddObserver(Observer* pObserver);
-		int GetLives() const;
-
-	private:
-		int m_CurrentLives;
-
-		Subject* m_pSubject;
+		void Increase() override;
+		void Increase(int amount) override;
+		void SetValue(int health) override;
 	};
 }
 

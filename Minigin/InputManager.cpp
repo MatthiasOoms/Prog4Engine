@@ -85,9 +85,6 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 		}
 	}
 	
-	// Multiple controllers don't work? 
-	// Every controller works on every object that uses one
-	// TODO: Fix
 	for (auto const& controller : m_Controllers)
 	{
 		controller->Update();

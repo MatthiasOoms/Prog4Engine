@@ -4,54 +4,38 @@
 #include "Subject.h"
 
 dae::LivesComponent::LivesComponent(GameObject* pOwner)
-	: Component(pOwner)
+	: CounterComponent(pOwner)
 {
-	SetLives(3);
+	SetValue(3);
 	m_pSubject = new Subject{};
 }
 
-dae::LivesComponent::~LivesComponent()
+void dae::LivesComponent::Increase()
 {
-	delete m_pSubject;
-	m_pSubject = nullptr;
-}
-
-void dae::LivesComponent::AddObserver(Observer* pObserver)
-{
-	m_pSubject->AddObserver(pObserver);
-}
-
-int dae::LivesComponent::GetLives() const
-{
-	return m_CurrentLives;
-}
-
-void dae::LivesComponent::LowerLives()
-{
-	if (m_CurrentLives > 0)
+	if (m_Value > 0)
 	{
-		--m_CurrentLives;
+		++m_Value;
 		m_pSubject->OnNotify(m_pOwner, Event::PlayerDeath);
 	}
 }
 
-void dae::LivesComponent::LowerLives(int amount)
+void dae::LivesComponent::Increase(int amount)
 {
-	if (m_CurrentLives > 0)
+	if (m_Value > 0)
 	{
-		m_CurrentLives -= amount;
+		m_Value += amount;
 		m_pSubject->OnNotify(m_pOwner, Event::PlayerDeath);
 	}
 }
 
-void dae::LivesComponent::SetLives(int lives)
+void dae::LivesComponent::SetValue(int lives)
 {
 	if (lives > 0)
 	{
-		m_CurrentLives = lives;
+		m_Value = lives;
 	}
 	else
 	{
-		m_CurrentLives = 1;
+		m_Value = 1;
 	}
 }
