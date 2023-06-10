@@ -117,6 +117,9 @@
     <ClInclude Include="SoundSystem.h">
       <Filter>Engine Files\Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="SoundRAII.h">
+      <Filter>Engine Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Minigin.cpp">
@@ -187,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="SoundSystem.cpp">
       <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundRAII.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

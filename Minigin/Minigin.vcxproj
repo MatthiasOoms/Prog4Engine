@@ -224,6 +224,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SDLSoundSystem.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="SoundRAII.h" />
     <ClInclude Include="SoundServiceLocator.h" />
     <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="Subject.h" />
@@ -249,6 +250,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SDLSoundSystem.cpp" />
+    <ClCompile Include="SoundRAII.cpp" />
     <ClCompile Include="SoundServiceLocator.cpp" />
     <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="Subject.cpp" />
