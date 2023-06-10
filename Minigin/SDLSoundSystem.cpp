@@ -5,8 +5,7 @@
 #include <mutex>
 
 #include <SDL.h>
-#include <SDL_mixer.h>
-#include "SoundRAII.h"
+#include <SDL_mixer.h> 
 
 class dae::SDLSoundSystem::SDLSoundSystemImpl
 {
@@ -26,14 +25,15 @@ public:
 					return;
 				}
 
-				SoundRAII soundEffect{ m_pSoundEffects[id] };
-				if (soundEffect.GetSound() == nullptr)
+				Mix_Chunk* soundEffect{ m_pSoundEffects[id] }; // Put current sound in there
+
+				if (soundEffect == nullptr)
 				{
 					std::cerr << "Invalid sound ID: " << id << std::endl;
 					return;
 				}
 
-				int channel = Mix_PlayChannel(-1, soundEffect.GetSound(), 0);
+				int channel = Mix_PlayChannel(-1, soundEffect, 0);
 				if (channel == -1)
 				{
 					std::cerr << "Failed to play sound: " << Mix_GetError() << std::endl;
@@ -65,24 +65,31 @@ public:
 		std::jthread soundLoaderThread
 		([this, filePath]()
 			{
-				SoundRAII soundEffect{ Mix_LoadWAV(filePath.c_str()) };
-				if (soundEffect.GetSound() == nullptr)
+				Mix_Chunk* soundEffect = Mix_LoadWAV(filePath.c_str());
+				if (soundEffect == nullptr)
 				{
 					std::cerr << "Failed to load sound effect: " << Mix_GetError() << std::endl;
 					return;
 				}
 
 				std::lock_guard<std::mutex> lock(m_SoundEffectsMutex);
-				m_pSoundEffects.push_back(soundEffect.GetSound());
+				m_pSoundEffects.push_back(soundEffect);
+
+				// TODO: Implement RAII like in the 2D Texture
+				// Freeing the chunk removes from memory, using deleted sound
+				// 
+				// Tried, don't know how to do this correctly
+				// 
+				//Mix_FreeChunk(soundEffect);
 			}
 		);
 	}
 
 	void Cleanup()
 	{
-		for (size_t idx{}; idx < m_pSoundEffects.size(); ++idx)
+		for (auto sound : m_pSoundEffects)
 		{
-			Mix_FreeChunk(m_pSoundEffects[idx]);
+			Mix_FreeChunk(sound);
 		}
 
 		Mix_CloseAudio();
