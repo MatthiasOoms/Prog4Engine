@@ -11,31 +11,38 @@ class dae::SDLSoundSystem::SDLSoundSystemImpl
 {
 	std::vector<Mix_Chunk*> m_pSoundEffects;
 	std::mutex m_SoundEffectsMutex{};
+
 public:
 	void Play(const sound_id id, const float volume)
 	{
-		if (id >= m_pSoundEffects.size()) 
-		{
-			std::cerr << "Sound ID out of range: " << id << std::endl;
-			return;
-		}
+		std::jthread soundPlayerThread
+		([this, id, volume]()
+			{
+				std::lock_guard<std::mutex> lock(m_SoundEffectsMutex);
+				if (id >= m_pSoundEffects.size())
+				{
+					std::cerr << "Sound ID out of range: " << id << std::endl;
+					return;
+				}
 
-		Mix_Chunk* soundEffect{ m_pSoundEffects[id] }; // Put current sound in there
+				Mix_Chunk* soundEffect{ m_pSoundEffects[id] }; // Put current sound in there
 
-		if (soundEffect == nullptr) 
-		{
-			std::cerr << "Invalid sound ID: " << id << std::endl;
-			return;
-		}
+				if (soundEffect == nullptr)
+				{
+					std::cerr << "Invalid sound ID: " << id << std::endl;
+					return;
+				}
 
-		int channel = Mix_PlayChannel(-1, soundEffect, 0);
-		if (channel == -1) 
-		{
-			std::cerr << "Failed to play sound: " << Mix_GetError() << std::endl;
-			return;
-		}
+				int channel = Mix_PlayChannel(-1, soundEffect, 0);
+				if (channel == -1)
+				{
+					std::cerr << "Failed to play sound: " << Mix_GetError() << std::endl;
+					return;
+				}
 
-		Mix_Volume(channel, static_cast<int>(volume * MIX_MAX_VOLUME));
+				Mix_Volume(channel, static_cast<int>(volume * MIX_MAX_VOLUME));
+			}
+		);
 	}
 
 	void Pause()
@@ -55,7 +62,8 @@ public:
 
 	void Load(const std::string& filePath)
 	{
-		std::jthread soundLoaderThread([this, filePath]()
+		std::jthread soundLoaderThread
+		([this, filePath]()
 			{
 				Mix_Chunk* soundEffect = Mix_LoadWAV(filePath.c_str());
 				if (soundEffect == nullptr)
