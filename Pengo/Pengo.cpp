@@ -56,7 +56,7 @@ void load()
 	auto& input = dae::InputManager::GetInstance();
 
 	soundSystem.Load("../Data/Missile.wav");
-	soundSystem.Play(0, 10);
+	soundSystem.Play(0, 100);
 
 	// Images
 	// Background
