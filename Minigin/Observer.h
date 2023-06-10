@@ -14,7 +14,7 @@ namespace dae
 		PauseSound,
 		ResumeSound,
 		StopSound,
-		ChangeVolume,
+		VolumeChange,
 		MuteSound,
 		UnmuteSound
 	};

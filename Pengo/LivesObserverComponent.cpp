@@ -23,6 +23,20 @@ void dae::LivesObserverComponent::OnNotify(GameObject* obj, Event event)
 		break;
 	case dae::Event::ScoreChange:
 		break;
+	case dae::Event::PlaySound:
+		break;
+	case dae::Event::PauseSound:
+		break;
+	case dae::Event::ResumeSound:
+		break;
+	case dae::Event::StopSound:
+		break;
+	case dae::Event::VolumeChange:
+		break;
+	case dae::Event::MuteSound:
+		break;
+	case dae::Event::UnmuteSound:
+		break;
 	default:
 		break;
 	}
