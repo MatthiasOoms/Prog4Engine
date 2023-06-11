@@ -118,7 +118,7 @@
       <Filter>Engine Files\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="SoundRAII.h">
-      <Filter>Engine Files</Filter>
+      <Filter>Engine Files\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -192,7 +192,7 @@
       <Filter>Source Files\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="SoundRAII.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
