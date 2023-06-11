@@ -211,10 +211,14 @@ xcopy "$(SolutionDir)\3rdParty\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" 
   <ItemGroup>
     <ClCompile Include="CounterComponent.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
+    <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="KillCommand.cpp" />
     <ClCompile Include="LivesComponent.cpp" />
     <ClCompile Include="LivesObserverComponent.cpp" />
+    <ClCompile Include="MoveState.cpp" />
     <ClCompile Include="Pengo.cpp" />
+    <ClCompile Include="PlayerComponent.cpp" />
+    <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="ScoreCommand.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="ScoreObserverComponent.cpp" />
@@ -222,9 +226,13 @@ xcopy "$(SolutionDir)\3rdParty\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" 
   <ItemGroup>
     <ClInclude Include="CounterComponent.h" />
     <ClInclude Include="FPSComponent.h" />
+    <ClInclude Include="IdleState.h" />
     <ClInclude Include="KillCommand.h" />
     <ClInclude Include="LivesComponent.h" />
     <ClInclude Include="LivesObserverComponent.h" />
+    <ClInclude Include="MoveState.h" />
+    <ClInclude Include="PlayerComponent.h" />
+    <ClInclude Include="PlayerState.h" />
     <ClInclude Include="ScoreCommand.h" />
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="ScoreObserverComponent.h" />
