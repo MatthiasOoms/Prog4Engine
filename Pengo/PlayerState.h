@@ -9,7 +9,7 @@ namespace dae
 	public:
 		PlayerState(PlayerComponent* pPlayer);
 		~PlayerState();
-		virtual PlayerState* HandleInput(float) {};
+		virtual PlayerState* HandleInput(float) { return nullptr; };
 		virtual void Update(float) {};
 		virtual void OnEnter() {};
 		virtual void OnExit() {};

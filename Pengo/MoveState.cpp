@@ -11,7 +11,7 @@ dae::MoveState::MoveState(PlayerComponent* pPlayer)
 {
 }
 
-dae::PlayerState* dae::MoveState::HandleInput(float elapsedSec)
+dae::PlayerState* dae::MoveState::HandleInput(float)
 {
     // Get GameObject
     auto pOwner = m_pPlayer->GetOwner();

@@ -10,7 +10,7 @@ dae::IdleState::IdleState(PlayerComponent* pPlayer)
 {
 }
 
-dae::PlayerState* dae::IdleState::HandleInput(float elapsedSec)
+dae::PlayerState* dae::IdleState::HandleInput(float)
 {
     // Get GameObject
     auto pOwner = m_pPlayer->GetOwner();
