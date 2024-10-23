@@ -11,6 +11,7 @@
 #include "ResourceManager.h"
 #include <chrono>
 #include <iostream>
+#include <thread>
 
 
 SDL_Window* g_window{};

@@ -1,5 +1,5 @@
-#include <windows.h>
 #include "InputManager.h"
+#include <windows.h>
 #include <SDL.h>
 #include <algorithm> // std::tranform
 #include <functional> // std::bit_xor
@@ -26,13 +26,6 @@ bool dae::InputManager::HandleInput(float elapsedSec)
 		{
 			return false;
 		}
-		if (e.type == SDL_KEYDOWN) 
-		{
-		}
-		if (e.type == SDL_MOUSEBUTTONDOWN) 
-		{
-		}
-		// etc...
 	}
 
 	int size{};
